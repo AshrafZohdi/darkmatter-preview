@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Collection | DarkMatter</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#000}
+a{color:#F2F0F7}a:hover{color:#C8B8FF}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid #8B6CFF;outline-offset:3px}
+input,textarea,select,button{font:inherit}
+@property --dm-a{syntax:'<angle>';initial-value:0deg;inherits:false}
+.dm-btn{position:relative;isolation:isolate;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,background-color .3s ease,color .3s ease}
+.dm-btn::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--dm-a),transparent 0deg,transparent 220deg,rgba(139,108,255,.9) 290deg,#E9E2FF 330deg,transparent 360deg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s ease;pointer-events:none;z-index:1}
+.dm-btn:hover::before,.dm-btn:focus-visible::before{opacity:1;animation:dmOrbitLine 1.8s linear infinite}
+@keyframes dmOrbitLine{to{--dm-a:360deg}}
+.dm-btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px -14px rgba(139,108,255,.85),0 0 0 1px rgba(139,108,255,.25)}
+.dm-btn:active{transform:translateY(0) scale(.98)}
+.dm-fill:hover{background-color:#FFFFFF !important;color:#000 !important}
+.dm-line:hover{background-color:rgba(139,108,255,.14) !important}
+.dm-roll{display:inline-block;position:relative;overflow:hidden;vertical-align:middle;line-height:1.3}
+.dm-roll>span{display:inline-block;position:relative;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.dm-roll>span::after{content:attr(data-t);position:absolute;left:0;top:100%;white-space:nowrap}
+.dm-btn:hover .dm-roll>span,.dm-btn:focus-visible .dm-roll>span{transform:translateY(-100%)}
+.dm-ico{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:22px;border:0;background:transparent;color:#F2F0F7;cursor:pointer;transition:background-color .25s ease,box-shadow .25s ease,color .25s ease}
+.dm-ico:hover{background-color:#16131D;box-shadow:0 0 22px rgba(139,108,255,.45);color:#C8B8FF}
+.dm-nav a{background:linear-gradient(#C8B8FF,#C8B8FF) 0 100%/0 1px no-repeat;transition:background-size .35s cubic-bezier(.2,.8,.2,1),color .25s ease}
+.dm-nav a:hover{background-size:100% 1px}
+.dm-mob{display:none !important}
+.dm-menu{animation:dmMenuFade .35s ease both}
+@keyframes dmMenuFade{from{opacity:0}to{opacity:1}}
+.dm-mi{opacity:0;animation:dmMenuIn .6s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes dmMenuIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media (max-width: 820px){.dm-desk{display:none !important}.dm-mob{display:inline-flex !important}}
+@media (prefers-reduced-motion: reduce){.dm-btn,.dm-roll>span{transition:none}.dm-btn:hover::before{animation:none}.dm-menu,.dm-mi{animation:none;opacity:1}}
+.dm-pgrid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.dm-card{transition:border-color .3s ease,box-shadow .3s ease,transform .4s cubic-bezier(.2,.8,.2,1)}
+.dm-card:hover{border-color:#8B6CFF !important;box-shadow:0 0 0 1px #8B6CFF,0 0 48px rgba(139,108,255,.3);transform:translateY(-4px)}
+.dm-img{transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.dm-card:hover .dm-img{transform:scale(1.04)}
+.dm-img2{opacity:0;transition:opacity .5s ease,transform .7s cubic-bezier(.2,.8,.2,1);transform:scale(1.04)}
+.dm-card:hover .dm-img2{opacity:1;transform:scale(1)}
+.dm-qv{opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease}
+.dm-card:hover .dm-qv,.dm-card:focus-within .dm-qv{opacity:1;transform:none}
+.dm-in{animation:dmIn .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes dmIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.dm-overlay{animation:dmMenuFade .25s ease both}
+.dm-pop{animation:dmPop .4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes dmPop{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+.dm-drawer{animation:dmDrawer .4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes dmDrawer{from{transform:translateX(100%)}to{transform:none}}
+[dir=rtl] .dm-drawer{animation-name:dmDrawerR}
+@keyframes dmDrawerR{from{transform:translateX(-100%)}to{transform:none}}
+.dm-tabs{flex-wrap:wrap}
+@media (max-width: 640px){.dm-pgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px !important}.dm-tabs{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:4px}.dm-tabs button{flex:none}.dm-qv{display:none !important}.dm-sortrow{width:100%}.dm-search{flex:1 1 100%}.dm-search input{width:100% !important}}
+@media (prefers-reduced-motion: reduce){.dm-in,.dm-pop,.dm-drawer,.dm-overlay{animation:none}}
+
+</style>
+
+</head>
+<body>
+<div id="app"></div>
+<template id="dm-template">
+<div dir="{{dir}}" lang="{{lang}}" style="background: #000000; color: #F2F0F7; font-family: 'IBM Plex Sans Arabic', sans-serif; min-height: 100%; overflow-x: clip">
+<header style="position: relative; z-index: 20">
+<div style="max-width: 1280px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<div style="display: flex; align-items: center; gap: 44px">
+<a href="index.html" aria-label="DarkMatter home" style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: 17px; letter-spacing: 0.12em; line-height: 1.05; text-decoration: none; color: #F2F0F7" dir="ltr">DARK<br>MATTER</a>
+<nav aria-label="Main" class="dm-nav dm-desk" style="display: flex; gap: 30px; font-size: 15px">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="3"><a href="{{n.href}}" aria-current="{{n.cur}}" style="{{n.style}}">{{n.label}}</a></sc-for>
+</nav>
+</div>
+<div style="display: flex; align-items: center; gap: 2px">
+<button type="button" class="dm-desk dm-ico" onClick="{{toggleLang}}" style="width: auto; padding: 0 14px; font-size: 15px">{{langLabel}}</button>
+<button type="button" class="dm-ico" aria-label="Search" onClick="{{focusSearch}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4"/></svg></button>
+<button type="button" class="dm-ico" aria-label="Cart, {{cartCount}} items" onClick="{{openCart}}" style="position: relative"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 7h14l-1.5 12h-11z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><sc-if value="{{hasCart}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; top: 4px; right: 2px; min-width: 18px; height: 18px; padding: 0 4px; box-sizing: border-box; border-radius: 9px; background: #8B6CFF; color: #000; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center">{{cartCount}}</span></sc-if></button>
+<button type="button" class="dm-mob dm-ico" onClick="{{openMenu}}" aria-label="Open menu" aria-expanded="{{menuAria}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h10"/></svg></button>
+</div>
+</div>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<div class="dm-menu" role="dialog" aria-modal="true" aria-label="Menu" style="position: fixed; inset: 0; z-index: 60; background: rgba(0,0,0,0.97); backdrop-filter: blur(14px); display: flex; flex-direction: column; padding: 18px 24px 32px; box-sizing: border-box; overflow-y: auto">
+<div aria-hidden="true" style="position: absolute; right: -200px; top: 30%; width: 600px; height: 600px; background: radial-gradient(closest-side, rgba(107,79,216,0.35), transparent); pointer-events: none"></div>
+<div style="position: relative; display: flex; justify-content: space-between; align-items: center">
+<a href="index.html" style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: 17px; letter-spacing: 0.12em; line-height: 1.05; text-decoration: none" dir="ltr">DARK<br>MATTER</a>
+<button type="button" class="dm-ico" onClick="{{closeMenu}}" aria-label="Close menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button>
+</div>
+<nav aria-label="Mobile" style="position: relative; display: flex; flex-direction: column; gap: 6px; margin: 56px 0 auto">
+<sc-for list="{{mnav}}" as="n" hint-placeholder-count="4"><a href="{{n.href}}" class="dm-mi" onClick="{{closeMenu}}" style="{{n.mStyle}}">{{n.label}}</a></sc-for>
+</nav>
+<div class="dm-mi" style="animation-delay: .45s; position: relative; display: flex; flex-direction: column; gap: 18px; margin-top: 48px">
+<a href="https://wa.me/97460085588" target="_blank" rel="noopener" class="dm-btn dm-fill" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 0 26px; background: #F2F0F7; color: #000; border-radius: 27px; text-decoration: none; font-weight: 500"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg><span class="dm-roll"><span data-t="WhatsApp +974 6008 5588">WhatsApp +974 6008 5588</span></span></a>
+<button type="button" onClick="{{toggleLang}}" class="dm-btn dm-line" style="min-height: 50px; border: 1px solid #3A3546; border-radius: 25px; background: transparent; color: #F2F0F7; cursor: pointer"><span class="dm-roll"><span data-t="{{langLabel}}">{{langLabel}}</span></span></button>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; font-size: 15px"><a href="https://www.instagram.com/darkmatter.qa" target="_blank" rel="noopener" style="text-decoration: none; color: #A9A3B8">Instagram</a><a href="https://www.tiktok.com/@darkmatter.qa" target="_blank" rel="noopener" style="text-decoration: none; color: #A9A3B8">TikTok</a><a href="https://www.snapchat.com/add/darkmatter.qa" target="_blank" rel="noopener" style="text-decoration: none; color: #A9A3B8">Snapchat</a><a href="https://m.facebook.com/61579856102959/" target="_blank" rel="noopener" style="text-decoration: none; color: #A9A3B8">Facebook</a></div>
+</div>
+</div>
+</sc-if>
+</header>
+<section style="position: relative; overflow: hidden; margin-top: -86px; padding-top: 86px">
+<div aria-hidden="true" style="position: absolute; left: 50%; top: -120px; width: 1100px; height: 520px; margin-left: -550px; background: radial-gradient(closest-side, rgba(107,79,216,0.30), transparent); pointer-events: none"></div>
+<div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 48px 24px 36px">
+<h1 style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-weight: 400; font-size: clamp(32px, 5vw, 64px); line-height: 1.08; margin: 0 0 14px">{{heroTitle}}</h1>
+<p style="color: #C9C3D6; font-size: 18px; line-height: 1.6; margin: 0; max-width: 620px">{{heroText}}</p>
+</div>
+</section>
+
+<div style="position: sticky; top: 0; z-index: 10; background: rgba(0,0,0,0.86); backdrop-filter: blur(10px); border-top: 1px solid #16131D; border-bottom: 1px solid #16131D">
+<div style="max-width: 1280px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; gap: 12px 20px; justify-content: space-between; align-items: center">
+<div role="tablist" aria-label="Collections" class="dm-tabs" style="display: flex; gap: 6px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<button type="button" role="tab" class="dm-btn dm-line" aria-selected="{{t.selected}}" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}} <span style="opacity: 0.6; margin-inline-start: 4px">{{t.count}}</span></button>
+</sc-for>
+</div>
+<div class="dm-sortrow" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+<label class="dm-search" style="display: flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 14px; border: 1px solid #2E2A38; border-radius: 21px; background: #0A0910"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4"/></svg><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Search pieces</span><input ref="{{searchRef}}" value="{{q}}" onInput="{{setQ}}" placeholder="{{searchPh}}" style="width: 150px; background: transparent; border: 0; color: #F2F0F7; outline: none"></label>
+<sc-for list="{{sorts}}" as="o" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{o.selected}}" onClick="{{o.pick}}" style="{{o.style}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+</div>
+
+<section aria-label="Products" style="max-width: 1280px; margin: 0 auto; padding: 36px 24px 96px">
+<div aria-live="polite" style="color: #8A8499; font-size: 14px; margin-bottom: 20px">{{countText}}</div>
+
+<sc-if value="{{showSet}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="dm-card" onClick="{{openSet}}" style="width: 100%; display: flex; flex-wrap: wrap; gap: 28px; align-items: center; text-align: start; color: #F2F0F7; cursor: pointer; padding: 14px; margin-bottom: 26px; border: 1px solid #1C1925; border-radius: 16px; background: linear-gradient(120deg, #120F1C, #050408 70%)">
+<div style="flex: 1 1 380px; min-width: 0; aspect-ratio: 16 / 8; border-radius: 10px; overflow: hidden; background: #E8E6E3"><img class="dm-img" src="assets/26.jpg" alt="All eight Qatar 2022 stadium models framed on a wall" style="width: 100%; height: 100%; object-fit: cover; object-position: center 40%"></div>
+<div style="flex: 1 1 280px; min-width: 0; padding: 8px 10px">
+<div style="color: #B9A6FF; font-size: 14px; margin-bottom: 10px">{{t.setLabel}}</div>
+<div style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: clamp(20px, 2.4vw, 24px); line-height: 1.3; margin-bottom: 10px">{{t.setTitle}}</div>
+<p style="color: #C9C3D6; line-height: 1.6; margin: 0 0 18px">{{t.setText}}</p>
+<span class="dm-btn dm-line" style="display: inline-flex; align-items: center; min-height: 46px; padding: 0 24px; border: 1px solid #F2F0F7; border-radius: 23px"><span class="dm-roll"><span data-t="{{t.quick}}">{{t.quick}}</span></span></span>
+</div>
+</button>
+</sc-if>
+
+<div class="dm-pgrid" style="display: grid; gap: 22px">
+<sc-for list="{{items}}" as="p" hint-placeholder-count="12">
+<article class="dm-card dm-in" style="{{p.cardStyle}}">
+<button type="button" onClick="{{p.open}}" aria-label="Quick view {{p.name}}" style="display: block; width: 100%; padding: 0; border: 0; background: transparent; color: #F2F0F7; text-align: start; cursor: pointer">
+<div style="aspect-ratio: 4 / 5; border-radius: 10px; overflow: hidden; position: relative; background: #08070C">
+<img class="dm-img" src="{{p.img}}" alt="{{p.name}}" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<img class="dm-img2" src="{{p.img2}}" alt="" aria-hidden="true" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<sc-if value="{{p.tag}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; top: 10px; inset-inline-start: 10px; padding: 4px 10px; border-radius: 12px; background: rgba(0,0,0,0.72); border: 1px solid #3A3546; font-size: 12px">{{p.tag}}</span></sc-if>
+<span class="dm-qv" style="position: absolute; left: 10px; right: 10px; bottom: 10px; min-height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 20px; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); border: 1px solid #3A3546; font-size: 14px">{{t.quick}}</span>
+</div>
+<div style="padding: 14px 4px 2px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 16px">{{p.name}}</span>
+<sc-if value="{{p.ar}}" hint-placeholder-val="{{ false }}"><span lang="ar" style="color: #A9A3B8; font-size: 15px">{{p.ar}}</span></sc-if>
+<span style="color: #C9C3D6; margin-top: 2px" dir="ltr">QAR {{p.price}}</span>
+</div>
+</button>
+<button type="button" class="dm-btn {{p.addCls}}" onClick="{{p.add}}" style="{{p.addStyle}}"><span class="dm-roll"><span data-t="{{p.addLabel}}">{{p.addLabel}}</span></span></button>
+</article>
+</sc-for>
+</div>
+<sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 48px 0; color: #C9C3D6">{{t.empty}} <button type="button" onClick="{{clearQ}}" style="background: none; border: 0; color: #C8B8FF; text-decoration: underline; cursor: pointer; min-height: 44px">{{t.clear}}</button></div>
+</sc-if>
+
+<div style="margin-top: 72px; padding: clamp(24px, 4vw, 40px); border: 1px solid #221E2C; border-radius: 18px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; background: linear-gradient(120deg, #120F1C, #050408 70%)">
+<div style="max-width: 560px">
+<div style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: clamp(20px, 2.4vw, 24px); line-height: 1.3; margin-bottom: 10px">{{t.missH}}</div>
+<p style="color: #C9C3D6; margin: 0; line-height: 1.6">{{t.missP}}</p>
+</div>
+<a href="print.html" class="dm-btn dm-fill" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; background: #F2F0F7; color: #000; font-weight: 500; border-radius: 26px; text-decoration: none"><span class="dm-roll"><span data-t="{{t.missCta}}">{{t.missCta}}</span></span></a>
+</div>
+</section>
+
+<sc-if value="{{qvOpen}}" hint-placeholder-val="{{ false }}">
+<div class="dm-overlay" style="position: fixed; inset: 0; z-index: 70; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box">
+<button type="button" onClick="{{closeQv}}" aria-label="Close quick view" style="position: absolute; inset: 0; border: 0; background: rgba(0,0,0,0.78); backdrop-filter: blur(6px); cursor: pointer"></button>
+<div role="dialog" aria-modal="true" aria-label="{{qv.name}}" class="dm-pop" style="position: relative; width: 100%; max-width: 940px; max-height: 100%; overflow-y: auto; background: #0A0910; border: 1px solid #2E2A38; border-radius: 20px; box-shadow: 0 40px 120px rgba(107,79,216,0.35); display: flex; flex-wrap: wrap">
+<div style="flex: 1 1 360px; min-width: 0; padding: 14px; box-sizing: border-box">
+<div style="aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background: #08070C"><img src="{{qv.shown}}" alt="{{qv.name}}" style="width: 100%; height: 100%; object-fit: cover"></div>
+<div style="display: flex; gap: 10px; margin-top: 10px">
+<sc-for list="{{qv.thumbs}}" as="th" hint-placeholder-count="2"><button type="button" onClick="{{th.pick}}" aria-label="Photo {{th.n}}" aria-pressed="{{th.on}}" style="{{th.style}}"><img src="{{th.src}}" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px"></button></sc-for>
+</div>
+</div>
+<div style="flex: 1 1 320px; min-width: 0; padding: 28px clamp(20px, 3vw, 36px) 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; gap: 12px; align-items: flex-start">
+<span style="color: #B9A6FF; font-size: 14px">{{qv.col}}</span>
+<button type="button" class="dm-ico" onClick="{{closeQv}}" aria-label="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button>
+</div>
+<h2 style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-weight: 400; font-size: clamp(22px, 2.6vw, 30px); line-height: 1.25; margin: 0">{{qv.name}}</h2>
+<sc-if value="{{qv.ar}}" hint-placeholder-val="{{ false }}"><div lang="ar" style="font-size: 20px; color: #C9C3D6">{{qv.ar}}</div></sc-if>
+<div style="font-size: 22px" dir="ltr">QAR {{qv.price}}</div>
+<ul style="margin: 4px 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; color: #C9C3D6; font-size: 15px">
+<li>{{t.f1}}</li><li>{{t.f2}}</li><li>{{t.f3}}</li>
+</ul>
+<div style="display: flex; align-items: center; gap: 12px; margin-top: 8px">
+<span>{{t.qty}}</span>
+<button type="button" class="dm-ico" onClick="{{qvDown}}" aria-label="Fewer" style="border: 1px solid #3A3546; font-size: 20px">−</button>
+<strong aria-live="polite" style="min-width: 24px; text-align: center; font-weight: 500; font-size: 18px">{{qv.qty}}</strong>
+<button type="button" class="dm-ico" onClick="{{qvUp}}" aria-label="More" style="border: 1px solid #3A3546; font-size: 20px">+</button>
+</div>
+<button type="button" class="dm-btn dm-fill" onClick="{{qvAdd}}" style="margin-top: 8px; min-height: 54px; border: 0; border-radius: 27px; background: #F2F0F7; color: #000; font-weight: 500; cursor: pointer"><span class="dm-roll"><span data-t="{{qv.addLabel}}">{{qv.addLabel}}</span></span></button>
+<a href="https://wa.me/97460085588" target="_blank" rel="noopener" class="dm-btn dm-line" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; border: 1px solid #3A3546; border-radius: 25px; text-decoration: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg><span class="dm-roll"><span data-t="{{t.askWa}}">{{t.askWa}}</span></span></a>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{cartOpen}}" hint-placeholder-val="{{ false }}">
+<div class="dm-overlay" style="position: fixed; inset: 0; z-index: 75">
+<button type="button" onClick="{{closeCart}}" aria-label="Close cart" style="position: absolute; inset: 0; border: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); cursor: pointer"></button>
+<aside role="dialog" aria-modal="true" aria-label="Cart" class="dm-drawer" style="position: absolute; top: 0; bottom: 0; inset-inline-end: 0; width: 100%; max-width: 420px; background: #0A0910; border-inline-start: 1px solid #2E2A38; display: flex; flex-direction: column; box-sizing: border-box">
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; border-bottom: 1px solid #1C1925">
+<span style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: 18px">{{t.cart}} ({{cartCount}})</span>
+<button type="button" class="dm-ico" onClick="{{closeCart}}" aria-label="Close cart"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button>
+</div>
+<sc-if value="{{checkedOut}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 32px 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: 22px">{{t.thanks}}</div>
+<p style="color: #C9C3D6; line-height: 1.6; margin: 0">{{t.thanksP}}</p>
+<button type="button" class="dm-btn dm-line" onClick="{{resetCart}}" style="min-height: 50px; border: 1px solid #F2F0F7; border-radius: 25px; background: transparent; color: #F2F0F7; cursor: pointer"><span class="dm-roll"><span data-t="{{t.keep}}">{{t.keep}}</span></span></button>
+</div>
+</sc-if>
+<sc-if value="{{cartEmpty}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 40px 24px; color: #C9C3D6; display: flex; flex-direction: column; gap: 16px; align-items: flex-start">{{t.emptyCart}}
+<button type="button" class="dm-btn dm-line" onClick="{{closeCart}}" style="min-height: 48px; padding: 0 22px; border: 1px solid #3A3546; border-radius: 24px; background: transparent; color: #F2F0F7; cursor: pointer"><span class="dm-roll"><span data-t="{{t.browse}}">{{t.browse}}</span></span></button></div>
+</sc-if>
+<sc-if value="{{cartHas}}" hint-placeholder-val="{{ false }}">
+<ul style="list-style: none; margin: 0; padding: 8px 20px; flex: 1; overflow-y: auto">
+<sc-for list="{{cartLines}}" as="c" hint-placeholder-count="2">
+<li style="display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #16131D; align-items: center">
+<img src="{{c.img}}" alt="" style="width: 64px; height: 80px; object-fit: cover; border-radius: 8px; flex: none">
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 15px">{{c.name}}</span>
+<span style="color: #A9A3B8; font-size: 14px" dir="ltr">QAR {{c.price}}</span>
+<div style="display: flex; align-items: center; gap: 6px">
+<button type="button" class="dm-ico" onClick="{{c.dec}}" aria-label="Fewer {{c.name}}" style="width: 36px; height: 36px; border: 1px solid #2E2A38">−</button>
+<span style="min-width: 20px; text-align: center">{{c.qty}}</span>
+<button type="button" class="dm-ico" onClick="{{c.inc}}" aria-label="More {{c.name}}" style="width: 36px; height: 36px; border: 1px solid #2E2A38">+</button>
+</div>
+</div>
+<button type="button" class="dm-ico" onClick="{{c.remove}}" aria-label="Remove {{c.name}}" style="color: #A9A3B8"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button>
+</li>
+</sc-for>
+</ul>
+<div style="padding: 18px 20px 24px; border-top: 1px solid #1C1925; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; font-size: 17px"><span>{{t.subtotal}}</span><strong style="font-weight: 500" dir="ltr">QAR {{subtotal}}</strong></div>
+<span style="color: #8A8499; font-size: 13px">{{t.ship}}</span>
+<button type="button" class="dm-btn dm-fill" onClick="{{checkout}}" style="min-height: 54px; border: 0; border-radius: 27px; background: #F2F0F7; color: #000; font-weight: 500; cursor: pointer"><span class="dm-roll"><span data-t="{{t.checkout}}">{{t.checkout}}</span></span></button>
+</div>
+</sc-if>
+</aside>
+</div>
+</sc-if>
+<footer style="border-top: 1px solid #16131D">
+<div style="max-width: 1280px; margin: 0 auto; padding: 56px 24px 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; align-items: flex-start">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: 20px">{{t.loop}}</span>
+<div class="dm-nav" style="display: flex; gap: 20px; flex-wrap: wrap"><a href="https://www.instagram.com/darkmatter.qa" target="_blank" rel="noopener" style="text-decoration: none">Instagram</a><a href="https://www.tiktok.com/@darkmatter.qa" target="_blank" rel="noopener" style="text-decoration: none">TikTok</a><a href="https://www.snapchat.com/add/darkmatter.qa" target="_blank" rel="noopener" style="text-decoration: none">Snapchat</a><a href="https://m.facebook.com/61579856102959/" target="_blank" rel="noopener" style="text-decoration: none">Facebook</a></div>
+</div>
+<a href="https://wa.me/97460085588" target="_blank" rel="noopener" class="dm-btn dm-line" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; border: 1px solid #F2F0F7; border-radius: 26px; text-decoration: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg><span class="dm-roll"><span data-t="WhatsApp +974 6008 5588">WhatsApp +974 6008 5588</span></span></a>
+</div>
+<div style="max-width: 1280px; margin: 0 auto; padding: 16px 24px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: #8A8499; font-size: 13px">
+<span>© 2026 DarkMatter Collectibles</span><span dir="ltr">Visa · Mastercard · Amex · NAPS · STC Pay · Apple Pay</span>
+</div>
+</footer>
+</div>
+</template>
+<script src="assets/preact.min.umd.js"></script>
+<script src="assets/runtime.js"></script>
+<script>
+class Component extends DCLogic {
+constructor(p) {
+super(p);
+this.state = { col: 'all', sort: 'featured', q: '', cart: {}, qv: -1, qvImg: 0, qvQty: 1, cartOpen: false, checkedOut: false, menu: false, ar: false };
+this.data = [["Micheal Jackson", "", 750, "f", "assets/00.jpg", "assets/00-b.jpg"], ["Johnny Cage", "", 750, "f", "assets/01.jpg", "assets/01-b.jpg"], ["Tiger Mask", "النمر المقنع", 1500, "c", "assets/02.jpg", "assets/02-b.jpg"], ["Interceptor", "مخلب الدفاع", 900, "f", "assets/03.jpg", "assets/03-b.jpg"], ["Road Runner", "", 350, "c", "assets/04.jpg", "assets/04-b.jpg"], ["Jomaro", "جومارو", 900, "c", "assets/05.jpg", "assets/05-b.jpg"], ["Sanshiro", "سانشيرو", 900, "c", "assets/06.jpg", "assets/06-b.jpg"], ["Miracle Giants", "رامي نصف بطل", 1000, "c", "assets/07.jpg", "assets/07-b.jpg"], ["Grendizer", "غرندايزر", 1000, "c", "assets/08.jpg", "assets/08-b.jpg"], ["Da-Bull", "", 500, "f", "assets/09.jpg", "assets/09-b.jpg"], ["Santa Muerte", "", 750, "f", "assets/10.jpg", "assets/10-b.jpg"], ["Demogorgon, Stranger Things", "", 800, "f", "assets/11.jpg", "assets/11-b.jpg"], ["Silent Hill F, Fox Mask", "", 350, "f", "assets/12.jpg", "assets/12-b.jpg"], ["Astroganga", "جنكر", 1000, "c", "assets/13.jpg", "assets/13-b.jpg"], ["Tim aka Slick", "", 250, "t", "assets/14.jpg", "assets/14-b.jpg"], ["Echo aka Trickster", "", 250, "t", "assets/15.jpg", "assets/15-b.jpg"], ["Max aka Hoop", "", 250, "t", "assets/16.jpg", "assets/16-b.jpg"], ["Jazz aka Wizard", "", 250, "t", "assets/17.jpg", "assets/17-b.jpg"], ["Saqer aka Bigboss", "", 250, "t", "assets/18.jpg", "assets/18-b.jpg"], ["Bruce aka Beefcake", "", 250, "t", "assets/19.jpg", "assets/19-b.jpg"], ["Bob aka Blades", "", 250, "t", "assets/20.jpg", "assets/20-b.jpg"], ["Vex aka Trouble", "", 250, "t", "assets/21.jpg", "assets/21-b.jpg"], ["Ace aka Kick-Flip", "", 250, "t", "assets/22.jpg", "assets/22-b.jpg"], ["Ghost of Yotei, Demon Mask", "", 350, "f", "assets/23.jpg", "assets/23-b.jpg"], ["Noob Saibot, Mortal Kombat 11", "", 1000, "f", "assets/24.jpg", "assets/24-b.jpg"], ["Venom Bust", "", 450, "f", "assets/25.jpg", "assets/25-b.jpg"], ["Set of 8 Qatar 2022 stadiums", "", 2000, "s", "assets/26.jpg", "assets/26-b.jpg"], ["Stadium 974", "", 300, "s", "assets/27.jpg", "assets/27-b.jpg"], ["Al Thumama Stadium", "", 300, "s", "assets/28.jpg", "assets/28-b.jpg"], ["Lusail Stadium", "", 300, "s", "assets/29.jpg", "assets/29-b.jpg"], ["Al Janoub Stadium", "", 300, "s", "assets/30.jpg", "assets/30-b.jpg"], ["Education City Stadium", "", 300, "s", "assets/31.jpg", "assets/31-b.jpg"], ["Khalifa Stadium", "", 300, "s", "assets/32.jpg", "assets/32-b.jpg"], ["Ahmad Bin Ali Stadium", "", 300, "s", "assets/33.jpg", "assets/33-b.jpg"], ["Al Bayt Stadium", "", 300, "s", "assets/34.jpg", "assets/34-b.jpg"], ["Halo Master Chief", "", 800, "f", "assets/35.jpg", "assets/35-b.jpg"], ["Scorpion, Mortal Kombat 11", "", 900, "f", "assets/36.jpg", "assets/36-b.jpg"], ["Kong", "", 700, "f", "assets/37.jpg", "assets/37-b.jpg"], ["Meleys, The Red Queen", "", 1500, "f", "assets/38.jpg", "assets/38-b.jpg"], ["Superman", "", 1000, "f", "assets/39.jpg", "assets/39-b.jpg"], ["The Pearl Diver", "غواص اللؤلؤ", 1500, "f", "assets/40.jpg", "assets/40-b.jpg"], ["Arthur Morgan", "", 800, "f", "assets/41.jpg", "assets/41-b.jpg"], ["Wukong", "", 750, "f", "assets/42.jpg", "assets/42-b.jpg"], ["Spider-Man, Miles Morales", "", 800, "f", "assets/43.jpg", "assets/43-b.jpg"], ["The Silver Surfer", "", 600, "f", "assets/44.jpg", "assets/44-b.jpg"], ["Omni-Man", "", 800, "f", "assets/45.jpg", "assets/45-b.jpg"], ["Deadpool x Wolverine", "", 1500, "f", "assets/46.jpg", "assets/46-b.jpg"], ["Godzilla", "", 800, "f", "assets/47.jpg", "assets/47-b.jpg"], ["Captain Tsubasa", "كابتن ماجد", 750, "c", "assets/48.jpg", "assets/48-b.jpg"], ["Ghost Rider", "", 650, "f", "assets/49.jpg", "assets/49-b.jpg"], ["Venom", "", 1500, "f", "assets/50.jpg", "assets/50-b.jpg"]];
+this.searchRef = { current: null };
+}
+hdr(page, cartCount) {
+const s = this.state, ar = !!s.ar;
+const items = [['index.html', 'Home', 'الرئيسية', 'home', true], ['collection.html', 'Collection', 'المجموعة', 'collection'], ['print.html', '3D Printing Services', 'خدمات الطباعة ثلاثية الأبعاد', 'print'], ['about.html', 'About us', 'من نحن', 'about']];
+const nav = items.filter((it) => !it[4]).map((it, i) => ({ href: it[0], label: ar ? it[2] : it[1], cur: page === it[3] ? 'page' : 'false',
+style: 'text-decoration: none; padding: 6px 0; color: ' + (page === it[3] ? '#C8B8FF' : '#F2F0F7') }));
+const mnav = items.map((it, i) => ({ href: it[0], label: ar ? it[2] : it[1], cur: page === it[3] ? 'page' : 'false',
+mStyle: 'animation-delay: ' + (0.08 * i + 0.08).toFixed(2) + 's; font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: 30px; line-height: 1.3; padding: 10px 0; text-decoration: none; border-bottom: 1px solid #16131D; color: ' + (page === it[3] ? '#C8B8FF' : '#F2F0F7') }));
+return {
+nav, mnav, menuOpen: !!s.menu, menuAria: s.menu ? 'true' : 'false',
+openMenu: () => this.setState({ menu: true }), closeMenu: () => this.setState({ menu: false }),
+toggleLang: () => this.setState({ ar: !ar }), langLabel: ar ? 'English' : 'العربية',
+dir: ar ? 'rtl' : 'ltr', lang: ar ? 'ar' : 'en', cartCount: cartCount || 0, hasCart: (cartCount || 0) > 0,
+t: { loop: ar ? 'تابعونا' : 'Get in the loop' }
+};
+}
+addTo(i, n) {
+const c = Object.assign({}, this.state.cart);
+c[i] = (c[i] || 0) + n;
+if (c[i] <= 0) delete c[i];
+this.setState({ cart: c, checkedOut: false });
+}
+renderVals() {
+const s = this.state, ar = !!s.ar;
+const T = ar ? { quick: 'عرض سريع', setLabel: 'مجموعة كاملة', setTitle: 'ملاعب قطر 2022 الثمانية', setText: 'كل ملاعب كأس العالم في مجموعة واحدة. 2,000 ريال للمجموعة أو 300 ريال للملعب.',
+missH: 'لا تجد شخصيتك؟', missP: 'أرسل لنا ملفًا أو صورة أو حتى الاسم وسنرسل لك سعرًا لقطعة مخصصة.', missCta: 'اطلب قطعة مخصصة',
+empty: 'لا توجد نتائج.', clear: 'مسح البحث', qty: 'الكمية', add: 'أضف إلى السلة', added: 'في السلة', askWa: 'اسأل عبر واتساب',
+f1: 'مطبوعة بالراتنج عالي الدقة', f2: 'مطلية ومشطبة يدويًا', f3: 'جاهزة خلال 10 إلى 15 يومًا', cart: 'السلة', subtotal: 'المجموع', ship: 'التوصيل داخل قطر يُحسب عند الدفع.',
+checkout: 'إتمام الشراء', thanks: 'شكرًا لك', thanksP: 'في الموقع الفعلي يفتح هنا الدفع الآمن عبر بطاقات فيزا وماستركارد ونابس.', keep: 'متابعة التسوق', emptyCart: 'سلتك فارغة.', browse: 'تصفح المجموعة' }
+: { quick: 'Quick view', setLabel: 'Complete set', setTitle: 'All 8 Qatar 2022 stadiums', setText: 'Every World Cup venue in one collection. QAR 2,000 for the set, or QAR 300 each.',
+missH: 'Don\'t see your character?', missP: 'Send us a file, a photo or just the name and we\'ll quote a custom piece.', missCta: 'Request a custom piece',
+empty: 'No pieces match that search.', clear: 'Clear search', qty: 'Quantity', add: 'Add to cart', added: 'In your cart', askWa: 'Ask on WhatsApp',
+f1: 'High-detail resin print', f2: 'Prepared and painted by hand', f3: 'Ready in 10 to 15 days', cart: 'Cart', subtotal: 'Subtotal', ship: 'Delivery across Qatar is calculated at checkout.',
+checkout: 'Checkout', thanks: 'Order placed', thanksP: 'On the live site this step opens secure checkout with card, NAPS, STC Pay or Apple Pay.', keep: 'Keep shopping', emptyCart: 'Your cart is empty.', browse: 'Browse the collection' };
+const colNames = ar ? { all: 'الكل', f: 'مقتنيات', c: 'كلاسيكيات', s: 'ملاعب', t: 'الفريق' } : { all: 'All', f: 'Collectibles', c: 'Classics', s: 'Stadiums', t: 'The Squad' };
+const D = this.data;
+const count = (k) => k === 'all' ? D.length : D.filter((d) => d[3] === k).length;
+const tabs = ['all', 'f', 'c', 's', 't'].map((k) => ({ label: colNames[k], count: count(k), selected: String(s.col === k), pick: () => this.setState({ col: k }),
+style: 'min-height: 42px; padding: 0 16px; border-radius: 21px; font-size: 15px; cursor: pointer; white-space: nowrap; ' + (s.col === k ? 'background: #F2F0F7; color: #000; border: 1px solid #F2F0F7' : 'background: transparent; color: #F2F0F7; border: 1px solid #2E2A38') }));
+const sortDefs = [['featured', ar ? 'مميز' : 'Featured'], ['low', ar ? 'الأقل سعرًا' : 'Price ↑'], ['high', ar ? 'الأعلى سعرًا' : 'Price ↓']];
+const sorts = sortDefs.map((o) => ({ label: o[1], selected: String(s.sort === o[0]), pick: () => this.setState({ sort: o[0] }),
+style: 'min-height: 42px; padding: 0 14px; border-radius: 21px; font-size: 14px; cursor: pointer; transition: border-color .25s, color .25s; border: 1px solid ' + (s.sort === o[0] ? '#8B6CFF' : 'transparent') + '; background: transparent; color: ' + (s.sort === o[0] ? '#F2F0F7' : '#A9A3B8') }));
+const q = s.q.trim().toLowerCase();
+let list = D.map((d, i) => ({ d, i })).filter((x) => x.i !== 26 && (s.col === 'all' || x.d[3] === s.col) && (!q || (x.d[0] + ' ' + x.d[1]).toLowerCase().indexOf(q) >= 0));
+if (s.sort === 'low') list = list.slice().sort((a, b) => a.d[2] - b.d[2]);
+if (s.sort === 'high') list = list.slice().sort((a, b) => b.d[2] - a.d[2]);
+const tagFor = (i, d) => i === 40 ? (ar ? 'القطعة المميزة' : 'Signature') : d[3] === 'c' ? (ar ? 'كلاسيك' : 'Classic') : d[3] === 's' ? 'Qatar 2022' : '';
+const items = list.map((x, n) => {
+const inCart = !!s.cart[x.i];
+return { name: x.d[0], ar: x.d[1], price: x.d[2].toLocaleString('en-US'), img: x.d[4], img2: x.d[5], tag: tagFor(x.i, x.d),
+cardStyle: 'position: relative; padding: 10px 10px 12px; background: #0A0910; border: 1px solid #1C1925; border-radius: 14px; animation-delay: ' + (Math.min(n, 12) * 0.04).toFixed(2) + 's',
+open: () => this.setState({ qv: x.i, qvImg: 0, qvQty: 1 }),
+addLabel: inCart ? T.added + ' · ' + s.cart[x.i] : T.add, addCls: inCart ? 'dm-fill' : 'dm-line',
+addStyle: 'width: 100%; margin-top: 10px; min-height: 44px; border-radius: 22px; font-size: 14px; cursor: pointer; ' + (inCart ? 'background: #8B6CFF; color: #000; border: 1px solid #8B6CFF' : 'background: transparent; color: #F2F0F7; border: 1px solid #3A3546'),
+add: () => this.addTo(x.i, 1) };
+});
+const showSet = (s.col === 'all' || s.col === 's') && (!q || 'set stadiums 2022 world cup'.indexOf(q) >= 0);
+const heroCopy = (ar ? { all: ['المجموعة', 'مقتنيات وكلاسيكيات وقطع قطرية أصلية، تُطبع واحدة تلو الأخرى وتُشطّب يدويًا.'], f: ['مقتنيات', 'شخصيات من الألعاب والأفلام والقصص المصورة، منحوتة بدقة ومطلية يدويًا.'], c: ['كلاسيكيات', 'الرسوم المتحركة التي كبرنا معها، من غرندايزر إلى كابتن ماجد.'], s: ['ملاعب', 'ملاعب كأس العالم قطر 2022 الثمانية كنماذج مكتبية.'], t: ['الفريق', 'عشر شخصيات وفريق واحد. 250 ريالًا للقطعة.'] }
+: { all: ['The collection', 'Collectibles, classics and Qatar originals. Printed one at a time and finished by hand.'], f: ['Collectibles', 'Characters from games, film and comics, sculpted in detail and painted by hand.'], c: ['Classics', 'The cartoons we grew up with, from Grendizer to Captain Tsubasa.'], s: ['Stadiums', 'The eight Qatar 2022 World Cup stadiums as framed models.'], t: ['The Squad', 'Ten characters, one crew. QAR 250 each.'] })[s.col];
+const cartIdx = Object.keys(s.cart).map(Number);
+const cartCount = cartIdx.reduce((a, i) => a + s.cart[i], 0);
+const cartLines = cartIdx.map((i) => ({ name: D[i][0], img: D[i][4], qty: s.cart[i], price: (D[i][2] * s.cart[i]).toLocaleString('en-US'),
+inc: () => this.addTo(i, 1), dec: () => this.addTo(i, -1), remove: () => this.addTo(i, -s.cart[i]) }));
+const subtotal = cartIdx.reduce((a, i) => a + D[i][2] * s.cart[i], 0).toLocaleString('en-US');
+let qv = {};
+if (s.qv >= 0) {
+const d = D[s.qv], srcs = [d[4], d[5]];
+qv = { name: d[0], ar: d[1], price: d[2].toLocaleString('en-US'), col: colNames[d[3]], shown: srcs[s.qvImg], qty: s.qvQty,
+addLabel: T.add + ' · QAR ' + (d[2] * s.qvQty).toLocaleString('en-US'),
+thumbs: srcs.map((src, k) => ({ src, n: k + 1, on: String(s.qvImg === k), pick: () => this.setState({ qvImg: k }),
+style: 'width: 64px; height: 80px; padding: 2px; border-radius: 8px; cursor: pointer; background: transparent; border: 1px solid ' + (s.qvImg === k ? '#8B6CFF' : '#2E2A38') })) };
+}
+const nVis = items.length + (showSet ? 1 : 0);
+return Object.assign(this.hdr('collection', cartCount), {
+t: Object.assign({ loop: ar ? 'تابعونا' : 'Get in the loop' }, T),
+tabs, sorts, items, heroTitle: heroCopy[0], heroText: heroCopy[1], showSet, empty: nVis === 0,
+countText: nVis + (ar ? ' قطعة' : ' pieces'),
+q: s.q, searchRef: this.searchRef, searchPh: ar ? 'ابحث' : 'Search pieces',
+setQ: (e) => this.setState({ q: e.target.value }), clearQ: () => this.setState({ q: '' }),
+focusSearch: () => { if (this.searchRef.current) this.searchRef.current.focus(); },
+openSet: () => this.setState({ qv: 26, qvImg: 0, qvQty: 1 }),
+qvOpen: s.qv >= 0, qv, closeQv: () => this.setState({ qv: -1 }),
+qvUp: () => this.setState({ qvQty: Math.min(20, s.qvQty + 1) }), qvDown: () => this.setState({ qvQty: Math.max(1, s.qvQty - 1) }),
+qvAdd: () => { this.addTo(s.qv, s.qvQty); this.setState({ qv: -1, cartOpen: true }); },
+cartOpen: s.cartOpen, openCart: () => this.setState({ cartOpen: true }), closeCart: () => this.setState({ cartOpen: false, checkedOut: false }),
+cartLines, cartHas: cartCount > 0 && !s.checkedOut, cartEmpty: cartCount === 0 && !s.checkedOut, checkedOut: s.checkedOut, subtotal,
+checkout: () => this.setState({ checkedOut: true }), resetCart: () => this.setState({ cart: {}, checkedOut: false, cartOpen: false })
+});
+}
+}
+mountPage(Component);
+</script>
+</body>
+</html>

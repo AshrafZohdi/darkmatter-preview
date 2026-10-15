@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>About us | DarkMatter</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#000}
+a{color:#F2F0F7}a:hover{color:#C8B8FF}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid #8B6CFF;outline-offset:3px}
+input,textarea,select,button{font:inherit}
+@property --dm-a{syntax:'<angle>';initial-value:0deg;inherits:false}
+.dm-btn{position:relative;isolation:isolate;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,background-color .3s ease,color .3s ease}
+.dm-btn::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--dm-a),transparent 0deg,transparent 220deg,rgba(139,108,255,.9) 290deg,#E9E2FF 330deg,transparent 360deg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s ease;pointer-events:none;z-index:1}
+.dm-btn:hover::before,.dm-btn:focus-visible::before{opacity:1;animation:dmOrbitLine 1.8s linear infinite}
+@keyframes dmOrbitLine{to{--dm-a:360deg}}
+.dm-btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px -14px rgba(139,108,255,.85),0 0 0 1px rgba(139,108,255,.25)}
+.dm-btn:active{transform:translateY(0) scale(.98)}
+.dm-fill:hover{background-color:#FFFFFF !important;color:#000 !important}
+.dm-line:hover{background-color:rgba(139,108,255,.14) !important}
+.dm-roll{display:inline-block;position:relative;overflow:hidden;vertical-align:middle;line-height:1.3}
+.dm-roll>span{display:inline-block;position:relative;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.dm-roll>span::after{content:attr(data-t);position:absolute;left:0;top:100%;white-space:nowrap}
+.dm-btn:hover .dm-roll>span,.dm-btn:focus-visible .dm-roll>span{transform:translateY(-100%)}
+.dm-ico{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:22px;border:0;background:transparent;color:#F2F0F7;cursor:pointer;transition:background-color .25s ease,box-shadow .25s ease,color .25s ease}
+.dm-ico:hover{background-color:#16131D;box-shadow:0 0 22px rgba(139,108,255,.45);color:#C8B8FF}
+.dm-nav a{background:linear-gradient(#C8B8FF,#C8B8FF) 0 100%/0 1px no-repeat;transition:background-size .35s cubic-bezier(.2,.8,.2,1),color .25s ease}
+.dm-nav a:hover{background-size:100% 1px}
+.dm-mob{display:none !important}
+.dm-menu{animation:dmMenuFade .35s ease both}
+@keyframes dmMenuFade{from{opacity:0}to{opacity:1}}
+.dm-mi{opacity:0;animation:dmMenuIn .6s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes dmMenuIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media (max-width: 820px){.dm-desk{display:none !important}.dm-mob{display:inline-flex !important}}
+@media (prefers-reduced-motion: reduce){.dm-btn,.dm-roll>span{transition:none}.dm-btn:hover::before{animation:none}.dm-menu,.dm-mi{animation:none;opacity:1}}
+.dm-3d,.dm-3d *{transform-style:preserve-3d}
+.dm-face{position:absolute;backface-visibility:hidden;transition:background-color .6s ease,border-color .6s ease,box-shadow .6s ease}
+.dm-spin{animation:dmSpin 20s linear infinite}
+@keyframes dmSpin{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
+.dm-bar{transition:width 2.6s linear}
+@media (prefers-reduced-motion: reduce){.dm-spin{animation:none}.dm-bar{transition:none}}
+.dm-rise{opacity:0;animation:dmRise 1s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes dmRise{from{opacity:0;transform:translateY(30px);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
+.dm-mech-scale{transform:scale(1.05)}
+.dm-step{transition:background-color .3s ease,border-color .3s ease}
+.dm-step:hover{border-color:#3A2F66 !important}
+.dm-tile{transition:border-color .3s ease,box-shadow .3s ease,transform .4s cubic-bezier(.2,.8,.2,1)}
+.dm-tile:hover{border-color:#8B6CFF;box-shadow:0 0 40px rgba(139,108,255,.28);transform:translateY(-4px)}
+.dm-arrow{transition:letter-spacing .35s ease}
+.dm-tile:hover .dm-arrow{letter-spacing:.06em}
+.dm-card{transition:border-color .3s ease,box-shadow .3s ease}
+.dm-card:hover{border-color:#8B6CFF !important;box-shadow:0 0 0 1px #8B6CFF,0 0 48px rgba(139,108,255,.3)}
+.dm-img{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.dm-card:hover .dm-img{transform:scale(1.06)}
+.dm-form{grid-template-columns:repeat(2,minmax(0,1fr))}
+.dm-span2{grid-column:span 2}
+.dm-pop{animation:dmPop .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes dmPop{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media (max-width: 640px){.dm-form{grid-template-columns:1fr}.dm-span2{grid-column:auto}.dm-mech-area{height:440px !important}.dm-mech-scale{transform:scale(.8)}}
+@media (prefers-reduced-motion: reduce){.dm-rise{animation:none;opacity:1}}
+
+</style>
+
+</head>
+<body>
+<div id="app"></div>
+<template id="dm-template">
+<div dir="{{dir}}" lang="{{lang}}" style="background: #000000; color: #F2F0F7; font-family: 'IBM Plex Sans Arabic', sans-serif; min-height: 100%; overflow-x: clip">
+<header style="position: relative; z-index: 20">
+<div style="max-width: 1280px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<div style="display: flex; align-items: center; gap: 44px">
+<a href="index.html" aria-label="DarkMatter home" style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: 17px; letter-spacing: 0.12em; line-height: 1.05; text-decoration: none; color: #F2F0F7" dir="ltr">DARK<br>MATTER</a>
+<nav aria-label="Main" class="dm-nav dm-desk" style="display: flex; gap: 30px; font-size: 15px">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="3"><a href="{{n.href}}" aria-current="{{n.cur}}" style="{{n.style}}">{{n.label}}</a></sc-for>
+</nav>
+</div>
+<div style="display: flex; align-items: center; gap: 2px">
+<button type="button" class="dm-desk dm-ico" onClick="{{toggleLang}}" style="width: auto; padding: 0 14px; font-size: 15px">{{langLabel}}</button>
+<a href="collection.html" class="dm-ico" aria-label="Search the collection"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4"/></svg></a>
+<a href="collection.html" class="dm-ico" aria-label="Cart, {{cartCount}} items" style="position: relative"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 7h14l-1.5 12h-11z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><sc-if value="{{hasCart}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; top: 4px; right: 2px; min-width: 18px; height: 18px; padding: 0 4px; box-sizing: border-box; border-radius: 9px; background: #8B6CFF; color: #000; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center">{{cartCount}}</span></sc-if></a>
+<button type="button" class="dm-mob dm-ico" onClick="{{openMenu}}" aria-label="Open menu" aria-expanded="{{menuAria}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h10"/></svg></button>
+</div>
+</div>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<div class="dm-menu" role="dialog" aria-modal="true" aria-label="Menu" style="position: fixed; inset: 0; z-index: 60; background: rgba(0,0,0,0.97); backdrop-filter: blur(14px); display: flex; flex-direction: column; padding: 18px 24px 32px; box-sizing: border-box; overflow-y: auto">
+<div aria-hidden="true" style="position: absolute; right: -200px; top: 30%; width: 600px; height: 600px; background: radial-gradient(closest-side, rgba(107,79,216,0.35), transparent); pointer-events: none"></div>
+<div style="position: relative; display: flex; justify-content: space-between; align-items: center">
+<a href="index.html" style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: 17px; letter-spacing: 0.12em; line-height: 1.05; text-decoration: none" dir="ltr">DARK<br>MATTER</a>
+<button type="button" class="dm-ico" onClick="{{closeMenu}}" aria-label="Close menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button>
+</div>
+<nav aria-label="Mobile" style="position: relative; display: flex; flex-direction: column; gap: 6px; margin: 56px 0 auto">
+<sc-for list="{{mnav}}" as="n" hint-placeholder-count="4"><a href="{{n.href}}" class="dm-mi" onClick="{{closeMenu}}" style="{{n.mStyle}}">{{n.label}}</a></sc-for>
+</nav>
+<div class="dm-mi" style="animation-delay: .45s; position: relative; display: flex; flex-direction: column; gap: 18px; margin-top: 48px">
+<a href="https://wa.me/97460085588" target="_blank" rel="noopener" class="dm-btn dm-fill" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 0 26px; background: #F2F0F7; color: #000; border-radius: 27px; text-decoration: none; font-weight: 500"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg><span class="dm-roll"><span data-t="WhatsApp +974 6008 5588">WhatsApp +974 6008 5588</span></span></a>
+<button type="button" onClick="{{toggleLang}}" class="dm-btn dm-line" style="min-height: 50px; border: 1px solid #3A3546; border-radius: 25px; background: transparent; color: #F2F0F7; cursor: pointer"><span class="dm-roll"><span data-t="{{langLabel}}">{{langLabel}}</span></span></button>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; font-size: 15px"><a href="https://www.instagram.com/darkmatter.qa" target="_blank" rel="noopener" style="text-decoration: none; color: #A9A3B8">Instagram</a><a href="https://www.tiktok.com/@darkmatter.qa" target="_blank" rel="noopener" style="text-decoration: none; color: #A9A3B8">TikTok</a><a href="https://www.snapchat.com/add/darkmatter.qa" target="_blank" rel="noopener" style="text-decoration: none; color: #A9A3B8">Snapchat</a><a href="https://m.facebook.com/61579856102959/" target="_blank" rel="noopener" style="text-decoration: none; color: #A9A3B8">Facebook</a></div>
+</div>
+</div>
+</sc-if>
+</header>
+<section style="position: relative; margin-top: -86px; padding-top: 86px">
+<div aria-hidden="true" style="position: absolute; left: 50%; top: -80px; width: 1100px; height: 620px; margin-left: -550px; background: radial-gradient(closest-side, rgba(107,79,216,0.28), transparent); pointer-events: none"></div>
+<div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 56px 24px 80px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-end; justify-content: space-between">
+<h1 class="dm-rise" style="flex: 1 1 520px; min-width: 0; font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-weight: 400; font-size: clamp(30px, 5vw, 66px); line-height: 1.14; margin: 0">We build pieces that tell stories you can hold.</h1>
+<p class="dm-rise" lang="ar" dir="rtl" style="animation-delay: .3s; flex: 1 1 280px; min-width: 0; max-width: 380px; font-size: clamp(20px, 2vw, 24px); line-height: 1.6; color: #C9C3D6; margin: 0">نصنع قطعًا تروي قصصًا ملموسة يمكن عرضها والاعتزاز بها</p>
+</div>
+</section>
+
+<section style="border-top: 1px solid #16131D; border-bottom: 1px solid #16131D">
+<div style="max-width: 1280px; margin: 0 auto; padding: 72px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px">
+<div lang="en" dir="ltr">
+<p style="font-size: 20px; line-height: 1.7; color: #E4E1EA; margin: 0 0 20px">DarkMatter is a Qatari studio making high-quality 3D printed figures, collectibles and desk displays. We create custom character models and art pieces that stand out on any shelf.</p>
+<p style="font-size: 17px; line-height: 1.7; color: #A9A3B8; margin: 0">For gamers, collectors, designers and businesses that want something nobody else has. From the first idea to the final coat of paint, every piece is made with precision and care.</p>
+</div>
+<div lang="ar" dir="rtl">
+<p style="font-size: 20px; line-height: 1.9; color: #E4E1EA; margin: 0 0 20px">داركماتر استوديو قطري متخصص في المجسمات المطبوعة ثلاثية الأبعاد والمقتنيات والمعروضات المكتبية، نصمم نماذج شخصيات وقطعًا فنية حسب الطلب.</p>
+<p style="font-size: 17px; line-height: 1.9; color: #A9A3B8; margin: 0">للاعبين وجامعي المقتنيات والمصممين والشركات. من الفكرة حتى آخر لمسة طلاء، نصنع كل قطعة بدقة واهتمام.</p>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="proc" style="position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; right: -10%; top: 0; width: 900px; height: 800px; background: radial-gradient(closest-side, rgba(107,79,216,0.22), transparent); pointer-events: none"></div>
+<div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
+<div style="flex: 1 1 360px; min-width: 0">
+<h2 id="proc" style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-weight: 400; font-size: clamp(24px, 3vw, 38px); line-height: 1.3; margin: 0 0 32px">{{t.procH}}</h2>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{stages}}" as="s" hint-placeholder-count="3">
+<li>
+<button type="button" onClick="{{s.pick}}" aria-current="{{s.current}}" class="dm-step" style="{{s.style}}">
+<span style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; width: 100%"><strong style="font-weight: 500; font-size: 18px">{{s.label}}</strong><span style="color: #8A8499; font-size: 14px">{{s.num}}</span></span>
+<span style="color: #A9A3B8; font-size: 15px; line-height: 1.5; text-align: start">{{s.desc}}</span>
+<span style="display: block; width: 100%; height: 2px; background: #221E2C; border-radius: 1px; overflow: hidden; margin-top: 6px"><span class="dm-bar" style="{{s.bar}}"></span></span>
+</button>
+</li>
+</sc-for>
+</ol>
+</div>
+<div class="dm-mech-area" style="flex: 1 1 460px; min-width: 0; position: relative; height: 560px; display: flex; align-items: center; justify-content: center; perspective: 1300px">
+<div aria-hidden="true" style="position: absolute; left: 50%; top: 78%; width: 460px; height: 110px; margin-left: -230px; border-radius: 50%; background: radial-gradient(closest-side, rgba(139,108,255,0.45), rgba(107,79,216,0.12) 55%, transparent)"></div>
+<div aria-hidden="true" style="position: absolute; left: 50%; top: 80%; width: 280px; height: 40px; margin-left: -140px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,0.9), transparent)"></div>
+<div class="dm-mech-scale">
+<div class="dm-3d" role="img" aria-label="{{mechLabel}}" style="position: relative; width: 0; height: 0; transform: rotateX(-12deg) rotateY(-20deg)">
+<div class="dm-spin" style="position: absolute; left: 0; top: 0">
+<sc-for list="{{faces}}" as="f" hint-placeholder-count="0"><div class="dm-face" style="{{f.style}}"></div></sc-for>
+</div>
+</div>
+</div>
+<div aria-live="polite" style="position: absolute; left: 0; right: 0; bottom: 14px; text-align: center; font-size: 14px; color: #C8B8FF">{{mechCaption}}</div>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="offer" style="max-width: 1280px; margin: 0 auto; padding: 24px 24px 80px">
+<h2 id="offer" style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-weight: 400; font-size: 28px; margin: 0 0 32px">{{t.offer}}</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px">
+<a href="print.html" class="dm-tile" style="display: flex; flex-direction: column; gap: 12px; padding: 28px; border: 1px solid #221E2C; border-radius: 16px; text-decoration: none; background: #0A0910"><strong style="font-weight: 500; font-size: 19px">{{t.s1h}}</strong><span style="color: #A9A3B8; line-height: 1.55">{{t.s1p}}</span><span class="dm-arrow" style="color: #C8B8FF; font-size: 14px; margin-top: auto">{{t.go}}</span></a><a href="collection.html" class="dm-tile" style="display: flex; flex-direction: column; gap: 12px; padding: 28px; border: 1px solid #221E2C; border-radius: 16px; text-decoration: none; background: #0A0910"><strong style="font-weight: 500; font-size: 19px">{{t.s2h}}</strong><span style="color: #A9A3B8; line-height: 1.55">{{t.s2p}}</span><span class="dm-arrow" style="color: #C8B8FF; font-size: 14px; margin-top: auto">{{t.go}}</span></a><a href="collection.html" class="dm-tile" style="display: flex; flex-direction: column; gap: 12px; padding: 28px; border: 1px solid #221E2C; border-radius: 16px; text-decoration: none; background: #0A0910"><strong style="font-weight: 500; font-size: 19px">{{t.s3h}}</strong><span style="color: #A9A3B8; line-height: 1.55">{{t.s3p}}</span><span class="dm-arrow" style="color: #C8B8FF; font-size: 14px; margin-top: auto">{{t.go}}</span></a><a href="print.html" class="dm-tile" style="display: flex; flex-direction: column; gap: 12px; padding: 28px; border: 1px solid #221E2C; border-radius: 16px; text-decoration: none; background: #0A0910"><strong style="font-weight: 500; font-size: 19px">{{t.s4h}}</strong><span style="color: #A9A3B8; line-height: 1.55">{{t.s4p}}</span><span class="dm-arrow" style="color: #C8B8FF; font-size: 14px; margin-top: auto">{{t.go}}</span></a>
+</div>
+</section>
+
+<section aria-labelledby="studio" style="max-width: 1280px; margin: 0 auto; padding: 0 24px 88px">
+<h2 id="studio" style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-weight: 400; font-size: 28px; margin: 0 0 32px">{{t.studio}}</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+<a href="collection.html" class="dm-card" style="display: block; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; position: relative; background: #08070C; border: 1px solid #1C1925"><img class="dm-img" src="assets/38.jpg" alt="Meleys, The Red Queen" style="width: 100%; height: 100%; object-fit: cover"><span class="dm-cap" style="position: absolute; left: 14px; bottom: 14px; padding: 6px 12px; border-radius: 14px; background: rgba(0,0,0,0.72); font-size: 13px; color: #F2F0F7">Meleys, The Red Queen</span></a>
+<a href="collection.html" class="dm-card" style="display: block; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; position: relative; background: #08070C; border: 1px solid #1C1925"><img class="dm-img" src="assets/41.jpg" alt="Arthur Morgan" style="width: 100%; height: 100%; object-fit: cover"><span class="dm-cap" style="position: absolute; left: 14px; bottom: 14px; padding: 6px 12px; border-radius: 14px; background: rgba(0,0,0,0.72); font-size: 13px; color: #F2F0F7">Arthur Morgan</span></a>
+<a href="collection.html" class="dm-card" style="display: block; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; position: relative; background: #08070C; border: 1px solid #1C1925"><img class="dm-img" src="assets/10.jpg" alt="Santa Muerte" style="width: 100%; height: 100%; object-fit: cover"><span class="dm-cap" style="position: absolute; left: 14px; bottom: 14px; padding: 6px 12px; border-radius: 14px; background: rgba(0,0,0,0.72); font-size: 13px; color: #F2F0F7">Santa Muerte</span></a>
+</div>
+</section>
+
+<section aria-labelledby="contact" style="border-top: 1px solid #16131D; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; left: 30%; top: 20%; width: 700px; height: 400px; background: radial-gradient(closest-side, rgba(107,79,216,0.18), transparent); pointer-events: none"></div>
+<div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 80px 24px; display: flex; flex-wrap: wrap; gap: 48px">
+<div style="flex: 1 1 320px; min-width: 0">
+<h2 id="contact" style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-weight: 400; font-size: clamp(24px, 3vw, 38px); line-height: 1.3; margin: 0 0 18px">{{t.talk}}</h2>
+<p style="color: #C9C3D6; font-size: 17px; line-height: 1.6; margin: 0 0 28px; max-width: 400px">{{t.talkP}}</p>
+<a href="https://wa.me/97460085588" target="_blank" rel="noopener" class="dm-btn dm-line" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; border: 1px solid #F2F0F7; border-radius: 26px; text-decoration: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg><span class="dm-roll"><span data-t="WhatsApp +974 6008 5588">WhatsApp +974 6008 5588</span></span></a>
+<div style="color: #A9A3B8; margin-top: 18px">{{t.city}}</div>
+</div>
+<sc-if value="{{notSent}}" hint-placeholder-val="{{ true }}">
+<form onSubmit="{{send}}" class="dm-form" style="flex: 1 1 440px; min-width: 0; display: grid; gap: 16px; padding: clamp(20px, 3vw, 32px); border: 1px solid #221E2C; border-radius: 18px; background: #0A0910">
+<label style="display: flex; flex-direction: column; gap: 8px"><span>{{t.name}}</span><input required value="{{f.name}}" onInput="{{f.setName}}" autocomplete="name" style="min-height: 48px; background: #000; color: #F2F0F7; border: 1px solid #2E2A38; border-radius: 10px; padding: 0 14px"></label>
+<label style="display: flex; flex-direction: column; gap: 8px"><span>{{t.phone}}</span><input type="tel" value="{{f.phone}}" onInput="{{f.setPhone}}" autocomplete="tel" style="min-height: 48px; background: #000; color: #F2F0F7; border: 1px solid #2E2A38; border-radius: 10px; padding: 0 14px"></label>
+<label class="dm-span2" style="display: flex; flex-direction: column; gap: 8px"><span>{{t.email}}</span><input type="email" required value="{{f.email}}" onInput="{{f.setEmail}}" autocomplete="email" style="min-height: 48px; background: #000; color: #F2F0F7; border: 1px solid #2E2A38; border-radius: 10px; padding: 0 14px"></label>
+<label class="dm-span2" style="display: flex; flex-direction: column; gap: 8px"><span>{{t.msg}}</span><textarea rows="4" required value="{{f.msg}}" onInput="{{f.setMsg}}" style="background: #000; color: #F2F0F7; border: 1px solid #2E2A38; border-radius: 10px; padding: 12px 14px; resize: vertical"></textarea></label>
+<sc-if value="{{f.err}}" hint-placeholder-val="{{ false }}"><p class="dm-span2" role="alert" style="margin: 0; color: #FFB4A8">{{f.err}}</p></sc-if>
+<button type="submit" class="dm-btn dm-fill dm-span2" style="min-height: 52px; background: #F2F0F7; color: #000; border: 0; border-radius: 26px; font-weight: 500; cursor: pointer"><span class="dm-roll"><span data-t="{{t.send}}">{{t.send}}</span></span></button>
+</form>
+</sc-if>
+<sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
+<div class="dm-pop" role="status" style="flex: 1 1 440px; min-width: 0; padding: 40px; border: 1px solid #3A2F66; border-radius: 18px; background: #0F0C18; display: flex; flex-direction: column; gap: 14px; align-items: flex-start">
+<div style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: 24px">{{t.sentH}}</div>
+<p style="color: #C9C3D6; margin: 0; line-height: 1.6">{{t.sentP}}</p>
+<button type="button" class="dm-btn dm-line" onClick="{{again}}" style="min-height: 48px; padding: 0 22px; border: 1px solid #3A3546; border-radius: 24px; background: transparent; color: #F2F0F7; cursor: pointer"><span class="dm-roll"><span data-t="{{t.again}}">{{t.again}}</span></span></button>
+</div>
+</sc-if>
+</div>
+</section>
+<footer style="border-top: 1px solid #16131D">
+<div style="max-width: 1280px; margin: 0 auto; padding: 56px 24px 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; align-items: flex-start">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: 20px">{{t.loop}}</span>
+<div class="dm-nav" style="display: flex; gap: 20px; flex-wrap: wrap"><a href="https://www.instagram.com/darkmatter.qa" target="_blank" rel="noopener" style="text-decoration: none">Instagram</a><a href="https://www.tiktok.com/@darkmatter.qa" target="_blank" rel="noopener" style="text-decoration: none">TikTok</a><a href="https://www.snapchat.com/add/darkmatter.qa" target="_blank" rel="noopener" style="text-decoration: none">Snapchat</a><a href="https://m.facebook.com/61579856102959/" target="_blank" rel="noopener" style="text-decoration: none">Facebook</a></div>
+</div>
+<a href="https://wa.me/97460085588" target="_blank" rel="noopener" class="dm-btn dm-line" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; border: 1px solid #F2F0F7; border-radius: 26px; text-decoration: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg><span class="dm-roll"><span data-t="WhatsApp +974 6008 5588">WhatsApp +974 6008 5588</span></span></a>
+</div>
+<div style="max-width: 1280px; margin: 0 auto; padding: 16px 24px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: #8A8499; font-size: 13px">
+<span>© 2026 DarkMatter Collectibles</span><span dir="ltr">Visa · Mastercard · Amex · NAPS · STC Pay · Apple Pay</span>
+</div>
+</footer>
+</div>
+</template>
+<script src="assets/preact.min.umd.js"></script>
+<script src="assets/runtime.js"></script>
+<script>
+class Component extends DCLogic {
+constructor(p) {
+super(p);
+this.state = { stage: 0, sent: false, name: '', phone: '', email: '', msg: '', err: '', menu: false, ar: false };
+}
+componentDidMount() { this.start(); }
+componentWillUnmount() { clearInterval(this.t); }
+start() { clearInterval(this.t); this.t = setInterval(() => this.setState({ stage: (this.state.stage + 1) % 3 }), 2600); }
+hdr(page, cartCount) {
+const s = this.state, ar = !!s.ar;
+const items = [['index.html', 'Home', 'الرئيسية', 'home', true], ['collection.html', 'Collection', 'المجموعة', 'collection'], ['print.html', '3D Printing Services', 'خدمات الطباعة ثلاثية الأبعاد', 'print'], ['about.html', 'About us', 'من نحن', 'about']];
+const nav = items.filter((it) => !it[4]).map((it, i) => ({ href: it[0], label: ar ? it[2] : it[1], cur: page === it[3] ? 'page' : 'false',
+style: 'text-decoration: none; padding: 6px 0; color: ' + (page === it[3] ? '#C8B8FF' : '#F2F0F7') }));
+const mnav = items.map((it, i) => ({ href: it[0], label: ar ? it[2] : it[1], cur: page === it[3] ? 'page' : 'false',
+mStyle: 'animation-delay: ' + (0.08 * i + 0.08).toFixed(2) + 's; font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: 30px; line-height: 1.3; padding: 10px 0; text-decoration: none; border-bottom: 1px solid #16131D; color: ' + (page === it[3] ? '#C8B8FF' : '#F2F0F7') }));
+return {
+nav, mnav, menuOpen: !!s.menu, menuAria: s.menu ? 'true' : 'false',
+openMenu: () => this.setState({ menu: true }), closeMenu: () => this.setState({ menu: false }),
+toggleLang: () => this.setState({ ar: !ar }), langLabel: ar ? 'English' : 'العربية',
+dir: ar ? 'rtl' : 'ltr', lang: ar ? 'ar' : 'en', cartCount: cartCount || 0, hasCart: (cartCount || 0) > 0,
+t: { loop: ar ? 'تابعونا' : 'Get in the loop' }
+};
+}
+shade(hex, k) {
+const n = parseInt(hex.slice(1), 16);
+const f = (v) => Math.max(0, Math.min(255, Math.round(v * k)));
+return 'rgb(' + f(n >> 16) + ',' + f((n >> 8) & 255) + ',' + f(n & 255) + ')';
+}
+parts() {
+const P = [], add = (w, h, d, x, y, z, r) => P.push([w, h, d, x, y, z, r]);
+add(210, 22, 210, 0, 184, 0, 'plinth'); add(176, 6, 176, 0, 170, 0, 'trim');
+[-1, 1].forEach((s) => {
+add(48, 18, 66, s * 30, 158, 8, 'armor'); add(38, 72, 42, s * 30, 113, 0, 'armor'); add(30, 18, 30, s * 30, 70, 0, 'joint');
+add(34, 50, 36, s * 28, 38, 0, 'dark'); add(48, 42, 54, s * 82, -64, 0, 'accent'); add(24, 44, 26, s * 84, -24, 0, 'joint');
+add(34, 56, 36, s * 86, 24, 0, 'armor'); add(26, 22, 28, s * 86, 62, 0, 'dark');
+});
+add(96, 28, 52, 0, 4, 0, 'armor'); add(56, 22, 38, 0, -18, 0, 'dark'); add(112, 58, 62, 0, -56, 0, 'armor');
+add(54, 16, 8, 0, -58, 33, 'accent'); add(74, 62, 30, 0, -54, -46, 'dark'); add(22, 12, 22, 0, -92, 0, 'joint');
+add(46, 38, 44, 0, -116, 0, 'armor'); add(34, 7, 4, 0, -117, 23, 'visor'); add(5, 36, 5, 15, -150, -4, 'dark'); add(12, 6, 12, 15, -170, -4, 'accent');
+return P;
+}
+faces(stage) {
+const out = [];
+const lines = 'background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.22) 0 1px, transparent 1px 4px);';
+this.parts().forEach((p) => {
+const [w, h, d, x, y, z, role] = p;
+const fixed = role === 'plinth' || role === 'trim';
+let base;
+if (role === 'plinth') base = '#15121C'; else if (role === 'trim') base = '#6B4FD8';
+else if (stage === 1) base = '#8F8A9C';
+else if (role === 'visor') base = '#B9A6FF';
+else base = { armor: '#E6E3EC', dark: '#2B2735', joint: '#4A4458', accent: '#7A5CF0' }[role];
+const T = 'translate3d(' + x + 'px,' + y + 'px,' + z + 'px) ';
+[[w, h, '', d / 2, 1], [w, h, 'rotateY(180deg) ', d / 2, 0.55], [d, h, 'rotateY(90deg) ', w / 2, 0.8], [d, h, 'rotateY(-90deg) ', w / 2, 0.7], [w, d, 'rotateX(90deg) ', h / 2, 1.15], [w, d, 'rotateX(-90deg) ', h / 2, 0.4]].forEach((f) => {
+let look;
+if (stage === 0 && !fixed) look = 'background-color: rgba(139,108,255,0.06); border: 1px solid rgba(185,166,255,0.75); box-sizing: border-box; box-shadow: inset 0 0 10px rgba(139,108,255,0.25);';
+else look = 'background-color: ' + this.shade(base, f[4]) + ';' + (stage === 1 && !fixed ? lines : '') + (stage === 2 && role === 'visor' ? 'box-shadow: 0 0 18px 4px rgba(185,166,255,0.9);' : '');
+out.push({ style: 'width: ' + f[0] + 'px; height: ' + f[1] + 'px; left: ' + (-f[0] / 2) + 'px; top: ' + (-f[1] / 2) + 'px; ' + look + 'transform: ' + T + f[2] + 'translateZ(' + f[3] + 'px)' });
+});
+});
+return out;
+}
+renderVals() {
+const s = this.state, ar = !!s.ar;
+const T = ar ? { procH: 'نحت رقمي. تجسيد فعلي. تشطيب يدوي.', offer: 'ما نقدمه', studio: 'من الاستوديو', go: 'اكتشف',
+s1h: 'مجسمات ثلاثية الأبعاد حسب الطلب', s1p: 'مجسم لشخصية أو شخص أو حيوان أليف، مصمم لك.', s2h: 'معروضات ونماذج مكتبية', s2p: 'ملاعب ومعالم وقطع عرض بحجم المكتب.',
+s3h: 'تماثيل وشخصيات فنية', s3p: 'مقتنيات محدودة تُطبع وتُطلى يدويًا.', s4h: 'خدمات الطباعة ثلاثية الأبعاد', s4p: 'نماذج أولية وقطع بديلة وأي شيء تصممه.',
+talk: 'تواصل معنا', talkP: 'أسئلة عن قطعة أو طلب للشركات أو فكرة مخصصة. نرد عادة عبر واتساب في نفس اليوم.', city: 'الدوحة، قطر',
+name: 'الاسم', phone: 'الهاتف', email: 'البريد الإلكتروني', msg: 'الرسالة', send: 'أرسل الرسالة', sentH: 'تم استلام رسالتك', sentP: 'سنرد عليك قريبًا عبر البريد أو واتساب.', again: 'أرسل رسالة أخرى', need: 'يرجى إدخال الاسم والبريد والرسالة.' }
+: { procH: 'Sculpted digitally. Brought to life physically. Finished by hand.', offer: 'What we offer', studio: 'From the studio', go: 'Explore',
+s1h: 'Custom 3D figures', s1p: 'A figure of a character, a person or a pet, designed for you.', s2h: 'Desk displays and models', s2p: 'Stadiums, landmarks and display pieces sized for a desk or shelf.',
+s3h: 'Character sculptures', s3p: 'Limited collectibles, printed one at a time and painted by hand.', s4h: '3D printing services', s4p: 'Prototypes, replacement parts and anything you can design.',
+talk: 'Talk to us', talkP: 'Questions about a piece, a corporate order or a custom idea. We usually reply on WhatsApp the same day.', city: 'Doha, Qatar',
+name: 'Name', phone: 'Phone', email: 'Email', msg: 'Message', send: 'Send message', sentH: 'Message received', sentP: 'We will get back to you soon by email or WhatsApp.', again: 'Send another message', need: 'Please add your name, email and a message.' };
+const defs = ar ? [['نحت رقمي', 'كل قطعة تبدأ كنموذج ثلاثي الأبعاد مفصل.', 'نحت رقمي'], ['طباعة طبقة بطبقة', 'طابعات عالية الدقة تبني النموذج بالراتنج أو PLA.', 'طباعة خام من الطابعة'], ['تشطيب يدوي', 'صنفرة وأساس وطلاء في الاستوديو.', 'طلاء يدوي']]
+: [['Sculpted digitally', 'Every piece starts as a detailed 3D model, built or refined by our designers.', 'Digital sculpt'], ['Printed layer by layer', 'High-resolution printers build the model in resin or PLA, one thin layer at a time.', 'Raw print, straight off the printer'], ['Finished by hand', 'Sanded, primed and painted in our studio until it is ready for the shelf.', 'Hand-painted finish']];
+const stages = defs.map((d, i) => ({ label: d[0], desc: d[1], num: '0' + (i + 1), current: s.stage === i ? 'step' : 'false',
+pick: () => { this.setState({ stage: i }); this.start(); },
+style: 'width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 18px 20px; border-radius: 14px; cursor: pointer; text-align: start; color: #F2F0F7; background: ' + (s.stage === i ? '#0F0C18' : 'transparent') + '; border: 1px solid ' + (s.stage === i ? '#3A2F66' : '#16131D'),
+bar: 'display: block; height: 100%; background: #8B6CFF; box-shadow: 0 0 10px rgba(139,108,255,0.8); width: ' + (s.stage === i ? '100%' : '0%') + (s.stage === i ? '' : '; transition: none') }));
+const set = (k) => (e) => this.setState({ [k]: e.target.value, err: '' });
+return Object.assign(this.hdr('about', 0), {
+t: Object.assign({ loop: ar ? 'تابعونا' : 'Get in the loop' }, T),
+stages, faces: this.faces(s.stage), mechCaption: defs[s.stage][2], mechLabel: 'Figure shown as: ' + defs[s.stage][2],
+f: { name: s.name, phone: s.phone, email: s.email, msg: s.msg, err: s.err, setName: set('name'), setPhone: set('phone'), setEmail: set('email'), setMsg: set('msg') },
+sent: s.sent, notSent: !s.sent,
+send: (e) => { e.preventDefault(); if (!s.name.trim() || !s.email.trim() || !s.msg.trim()) { this.setState({ err: T.need }); return; } this.setState({ sent: true }); },
+again: () => this.setState({ sent: false, name: '', phone: '', email: '', msg: '' })
+});
+}
+}
+mountPage(Component);
+</script>
+</body>
+</html>
