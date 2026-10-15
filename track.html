@@ -29,6 +29,8 @@ input,textarea,select,button{font:inherit}
 .dm-ico:hover{background-color:#16131D;box-shadow:0 0 22px rgba(139,108,255,.45);color:#C8B8FF}
 .dm-nav a{background:linear-gradient(#C8B8FF,#C8B8FF) 0 100%/0 1px no-repeat;transition:background-size .35s cubic-bezier(.2,.8,.2,1),color .25s ease}
 .dm-nav a:hover{background-size:100% 1px}
+.dm-dash{transition:border-color .25s ease,color .25s ease,box-shadow .25s ease}
+.dm-dash:hover{border-color:#8B6CFF;color:#F2F0F7;box-shadow:0 0 20px rgba(139,108,255,.35)}
 .dm-mob{display:none !important}
 .dm-menu{animation:dmMenuFade .35s ease both}
 @keyframes dmMenuFade{from{opacity:0}to{opacity:1}}
@@ -46,7 +48,7 @@ input,textarea,select,button{font:inherit}
 </head>
 <body>
 <div id="app"></div>
-<template id="dm-template">
+<script type="text/x-template" id="dm-template">
 <div dir="{{dir}}" lang="{{lang}}" style="width: 390px; min-height: 1000px; box-sizing: border-box; background: #000000; color: #F2F0F7; font-family: 'IBM Plex Sans Arabic', sans-serif; padding: 18px 20px 28px; display: flex; flex-direction: column; gap: 24px; position: relative; overflow: hidden">
 <div aria-hidden="true" style="position: absolute; right: -160px; top: 120px; width: 420px; height: 420px; background: radial-gradient(closest-side, rgba(107,79,216,0.3), transparent); pointer-events: none"></div>
 <div style="position: relative; display: flex; justify-content: space-between; align-items: center">
@@ -92,7 +94,7 @@ input,textarea,select,button{font:inherit}
 
 <a href="https://wa.me/97460085588" target="_blank" rel="noopener" class="dm-btn dm-line" style="margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; border: 1px solid #4A4458; border-radius: 25px; text-decoration: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg><span class="dm-roll"><span data-t="{{t.questions}}">{{t.questions}}</span></span></a>
 </div>
-</template>
+</script>
 <script src="assets/preact.min.umd.js"></script>
 <script src="assets/runtime.js"></script>
 <script>

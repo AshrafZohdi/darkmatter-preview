@@ -75,7 +75,7 @@
     }
     var p = props(node, scope);
     if (key != null) p.key = key;
-    if (tag === 'template') return null;
+    if (tag.indexOf('dm-') === 0 && /^dm-(table|thead|tbody|tr|td|th)$/.test(tag)) tag = tag.slice(3);
     return h(tag, p, kids(node, scope));
   }
   function kids(node, scope, keyBase) {
@@ -98,7 +98,7 @@
 
   window.mountPage = function (LogicClass) {
     var tpl = document.getElementById('dm-template');
-    var raw = tpl.innerHTML;
+    var raw = tpl.textContent;
     var holder = new DOMParser().parseFromString('<!doctype html><html><body>' + raw + '</body></html>', 'text/html').body;
     annotate(holder, raw);
     var roots = Array.prototype.filter.call(holder.childNodes, function (n) { return n.nodeType === 1; });

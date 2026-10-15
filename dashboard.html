@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Team dashboard | DarkMatter</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#000}
+a{color:#F2F0F7}a:hover{color:#C8B8FF}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid #8B6CFF;outline-offset:3px}
+input,textarea,select,button{font:inherit}
+@property --dm-a{syntax:'<angle>';initial-value:0deg;inherits:false}
+.dm-btn{position:relative;isolation:isolate;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,background-color .3s ease,color .3s ease}
+.dm-btn::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--dm-a),transparent 0deg,transparent 220deg,rgba(139,108,255,.9) 290deg,#E9E2FF 330deg,transparent 360deg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s ease;pointer-events:none;z-index:1}
+.dm-btn:hover::before,.dm-btn:focus-visible::before{opacity:1;animation:dmOrbitLine 1.8s linear infinite}
+@keyframes dmOrbitLine{to{--dm-a:360deg}}
+.dm-btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px -14px rgba(139,108,255,.85),0 0 0 1px rgba(139,108,255,.25)}
+.dm-btn:active{transform:translateY(0) scale(.98)}
+.dm-fill:hover{background-color:#FFFFFF !important;color:#000 !important}
+.dm-line:hover{background-color:rgba(139,108,255,.14) !important}
+.dm-roll{display:inline-block;position:relative;overflow:hidden;vertical-align:middle;line-height:1.3}
+.dm-roll>span{display:inline-block;position:relative;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.dm-roll>span::after{content:attr(data-t);position:absolute;left:0;top:100%;white-space:nowrap}
+.dm-btn:hover .dm-roll>span,.dm-btn:focus-visible .dm-roll>span{transform:translateY(-100%)}
+.dm-ico{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:22px;border:0;background:transparent;color:#F2F0F7;cursor:pointer;transition:background-color .25s ease,box-shadow .25s ease,color .25s ease}
+.dm-ico:hover{background-color:#16131D;box-shadow:0 0 22px rgba(139,108,255,.45);color:#C8B8FF}
+.dm-nav a{background:linear-gradient(#C8B8FF,#C8B8FF) 0 100%/0 1px no-repeat;transition:background-size .35s cubic-bezier(.2,.8,.2,1),color .25s ease}
+.dm-nav a:hover{background-size:100% 1px}
+.dm-dash{transition:border-color .25s ease,color .25s ease,box-shadow .25s ease}
+.dm-dash:hover{border-color:#8B6CFF;color:#F2F0F7;box-shadow:0 0 20px rgba(139,108,255,.35)}
+.dm-mob{display:none !important}
+.dm-menu{animation:dmMenuFade .35s ease both}
+@keyframes dmMenuFade{from{opacity:0}to{opacity:1}}
+.dm-mi{opacity:0;animation:dmMenuIn .6s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes dmMenuIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media (max-width: 820px){.dm-desk{display:none !important}.dm-mob{display:inline-flex !important}}
+@media (prefers-reduced-motion: reduce){.dm-btn,.dm-roll>span{transition:none}.dm-btn:hover::before{animation:none}.dm-menu,.dm-mi{animation:none;opacity:1}}
+.dm-row{transition:background-color .2s ease;cursor:pointer}
+.dm-row:hover{background-color:#120F1A}
+.dm-navbtn{transition:background-color .25s ease,color .25s ease}
+.dm-navbtn:hover{background-color:#120F1A !important;color:#F2F0F7 !important}
+.dm-file{transition:border-color .25s ease}
+.dm-file:hover{border-color:#8B6CFF !important}
+.dm-step-in{animation:dmStepIn .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes dmStepIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.dm-toast{animation:dmToast .4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes dmToast{from{opacity:0;transform:translate(-50%,16px)}to{opacity:1;transform:translate(-50%,0)}}
+.dm-tabs{flex-wrap:wrap}
+@media (max-width: 820px){.dm-topbar{display:flex !important}.dm-side{flex:1 1 100% !important;display:none !important;border:0 !important;padding:8px 12px 16px !important}.dm-side.open{display:flex !important}.dm-tabs{flex-wrap:nowrap;overflow-x:auto}.dm-tabs button{flex:none}}
+
+</style>
+
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="dm-template">
+<div style="background: #07060B; color: #F2F0F7; font-family: 'IBM Plex Sans Arabic', sans-serif; min-height: 100%; display: flex; flex-wrap: wrap; align-items: stretch">
+
+<div class="dm-topbar" style="width: 100%; display: none; align-items: center; justify-content: space-between; padding: 12px 16px; background: #000; border-bottom: 1px solid #16131D; box-sizing: border-box">
+<a href="index.html" aria-label="Back to the website" style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: 14px; letter-spacing: 0.12em; line-height: 1.05; text-decoration: none; color: #F2F0F7">DARK<br>MATTER</a>
+<button type="button" class="dm-ico" onClick="{{toggleNav}}" aria-label="Menu" aria-expanded="{{navAria}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h10"/></svg></button>
+</div>
+
+<nav aria-label="Admin" class="dm-side {{sideCls}}" style="flex: 0 0 236px; min-width: 0; background: #000; padding: 28px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px; border-inline-end: 1px solid #16131D">
+<a href="index.html" class="dm-desk" style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: 15px; letter-spacing: 0.12em; line-height: 1.05; text-decoration: none; margin: 0 10px 32px">DARK<br>MATTER</a>
+<sc-for list="{{views}}" as="v" hint-placeholder-count="4">
+<button type="button" onClick="{{v.pick}}" aria-current="{{v.cur}}" class="dm-navbtn" style="{{v.style}}">{{v.label}}<sc-if value="{{v.badge}}" hint-placeholder-val="{{ false }}"><span style="margin-inline-start: auto; min-width: 22px; height: 22px; padding: 0 6px; box-sizing: border-box; border-radius: 11px; background: #8B6CFF; color: #000; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center">{{v.badge}}</span></sc-if></button>
+</sc-for>
+<div style="margin-top: auto; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<a href="index.html" style="color: #C9C3D6; font-size: 14px; text-decoration: none">← Back to website</a>
+<span style="color: #6E6880; font-size: 13px">Shop orders stay in Shopify</span>
+</div>
+</nav>
+
+<main style="flex: 1 1 600px; min-width: 0; padding: 28px clamp(16px, 3vw, 32px); box-sizing: border-box">
+
+<sc-if value="{{vReq}}" hint-placeholder-val="{{ true }}">
+<div class="dm-step-in">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 22px">
+<h1 style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-weight: 400; font-size: 24px; margin: 0">Print requests</h1>
+<label style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 14px; background: #0F0C18; border: 1px solid #221E2C; border-radius: 22px; width: 300px; max-width: 100%; box-sizing: border-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4"/></svg><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Search requests</span><input value="{{q}}" onInput="{{setQ}}" placeholder="Name or DM number" style="flex: 1; background: transparent; border: 0; color: #F2F0F7; min-width: 0; outline: none"></label>
+</div>
+<div role="tablist" aria-label="Status" class="dm-tabs" style="display: flex; gap: 8px; margin-bottom: 18px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6"><button type="button" role="tab" class="dm-btn dm-line" aria-selected="{{t.sel}}" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}} <span style="opacity: 0.65">{{t.count}}</span></button></sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+<div style="flex: 999 1 480px; min-width: 0; overflow-x: auto; background: #000; border: 1px solid #16131D; border-radius: 12px">
+<dm-table style="width: 100%; border-collapse: collapse; font-size: 15px; min-width: 560px">
+<dm-thead><dm-tr style="text-align: start; color: #A9A3B8; font-size: 13px"><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Request</dm-th><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Customer</dm-th><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">What</dm-th><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Status</dm-th><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Received</dm-th></dm-tr></dm-thead>
+<dm-tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="7">
+<dm-tr class="dm-row" onClick="{{r.pick}}" aria-selected="{{r.sel}}" style="{{r.rowStyle}}">
+<dm-td style="padding: 14px 16px; font-weight: 500"><button type="button" onClick="{{r.pick}}" style="background: none; border: 0; color: inherit; padding: 0; cursor: pointer; font-weight: 500">{{r.id}}</button></dm-td>
+<dm-td style="padding: 14px 16px">{{r.name}}</dm-td>
+<dm-td style="padding: 14px 16px; color: #C9C3D6">{{r.what}}</dm-td>
+<dm-td style="padding: 14px 16px"><span style="{{r.pill}}">{{r.status}}</span></dm-td>
+<dm-td style="padding: 14px 16px; color: #A9A3B8">{{r.when}}</dm-td>
+</dm-tr>
+</sc-for>
+</dm-tbody>
+</dm-table>
+<sc-if value="{{noRows}}" hint-placeholder-val="{{ false }}"><div style="padding: 32px 16px; color: #A9A3B8">No requests match. <button type="button" onClick="{{clearFilters}}" style="background: none; border: 0; color: #C8B8FF; text-decoration: underline; cursor: pointer; min-height: 44px">Clear filters</button></div></sc-if>
+</div>
+
+<aside aria-label="Request {{sel.id}}" class="dm-step-in" style="flex: 1 1 340px; min-width: 0; max-width: 440px; background: #0F0C18; border: 1px solid #221E2C; border-radius: 14px; padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+<h2 style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-weight: 400; font-size: 20px; margin: 0">{{sel.id}}</h2>
+<span style="{{sel.pill}}">{{sel.status}}</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px"><strong style="font-weight: 500">{{sel.name}}</strong><span style="color: #A9A3B8">{{sel.contact}}</span></div>
+<p style="margin: 0; line-height: 1.55; color: #C9C3D6">{{sel.brief}}</p>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{sel.files}}" as="f" hint-placeholder-count="2"><button type="button" class="dm-file" onClick="{{f.dl}}" style="display: flex; justify-content: space-between; gap: 10px; padding: 12px 14px; background: #07060B; border: 1px solid #1C1925; border-radius: 10px; color: #F2F0F7; cursor: pointer; text-align: start"><span dir="ltr">{{f.name}}</span><span style="color: #A9A3B8">{{f.label}}</span></button></sc-for>
+</div>
+<sc-if value="{{sel.canQuote}}" hint-placeholder-val="{{ true }}">
+<fieldset style="border: 1px solid #2E2A38; border-radius: 12px; padding: 16px; margin: 0; display: flex; flex-direction: column; gap: 12px">
+<legend style="padding: 0 6px">Quote</legend>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">Price (QAR)<input type="number" value="{{price}}" onInput="{{setPrice}}" style="min-height: 44px; background: #0A0910; color: #F2F0F7; border: 1px solid #2E2A38; border-radius: 10px; padding: 0 12px"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">Ready by<input type="date" value="{{ready}}" onInput="{{setReady}}" style="min-height: 44px; background: #0A0910; color: #F2F0F7; border: 1px solid #2E2A38; border-radius: 10px; padding: 0 12px; color-scheme: dark"></label>
+</div>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px">Deposit<select value="{{dep}}" onChange="{{setDep}}" style="min-height: 44px; background: #0A0910; color: #F2F0F7; border: 1px solid #2E2A38; border-radius: 10px; padding: 0 12px"><option value="0">No deposit</option><option value="30">30%</option><option value="50">50%</option><option value="100">Full payment</option></select></label>
+<span style="color: #A9A3B8; font-size: 14px">{{depText}}</span>
+</fieldset>
+<button type="button" class="dm-btn dm-fill" onClick="{{sendQuote}}" style="min-height: 50px; background: #F2F0F7; color: #000; border: 0; border-radius: 25px; font-weight: 500; cursor: pointer"><span class="dm-roll"><span data-t="Send quote with payment link">Send quote with payment link</span></span></button>
+</sc-if>
+<sc-if value="{{sel.canAdvance}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="dm-btn dm-fill" onClick="{{advance}}" style="min-height: 50px; background: #F2F0F7; color: #000; border: 0; border-radius: 25px; font-weight: 500; cursor: pointer"><span class="dm-roll"><span data-t="{{sel.nextLabel}}">{{sel.nextLabel}}</span></span></button>
+</sc-if>
+<a href="https://wa.me/97460085588" target="_blank" rel="noopener" class="dm-btn dm-line" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; border: 1px solid #4A4458; border-radius: 24px; text-decoration: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg><span class="dm-roll"><span data-t="Open chat on WhatsApp">Open chat on WhatsApp</span></span></a>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: #A9A3B8; border-top: 1px solid #1C1925; padding-top: 14px">
+<sc-for list="{{sel.log}}" as="g" hint-placeholder-count="2"><li>{{g}}</li></sc-for>
+</ol>
+</aside>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{vCust}}" hint-placeholder-val="{{ false }}">
+<div class="dm-step-in">
+<h1 style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-weight: 400; font-size: 24px; margin: 0 0 22px">Customers</h1>
+<div style="overflow-x: auto; background: #000; border: 1px solid #16131D; border-radius: 12px">
+<dm-table style="width: 100%; border-collapse: collapse; font-size: 15px; min-width: 520px">
+<dm-thead><dm-tr style="color: #A9A3B8; font-size: 13px"><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Customer</dm-th><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Contact</dm-th><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Requests</dm-th><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Latest</dm-th></dm-tr></dm-thead>
+<dm-tbody><sc-for list="{{customers}}" as="c" hint-placeholder-count="6"><dm-tr class="dm-row" onClick="{{c.open}}" style="border-top: 1px solid #16131D; cursor: pointer"><dm-td style="padding: 14px 16px">{{c.name}}</dm-td><dm-td style="padding: 14px 16px; color: #C9C3D6" dir="ltr">{{c.contact}}</dm-td><dm-td style="padding: 14px 16px">{{c.n}}</dm-td><dm-td style="padding: 14px 16px; color: #A9A3B8">{{c.latest}}</dm-td></dm-tr></sc-for></dm-tbody>
+</dm-table>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{vRep}}" hint-placeholder-val="{{ false }}">
+<div class="dm-step-in">
+<h1 style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-weight: 400; font-size: 24px; margin: 0 0 22px">Reports</h1>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
+<sc-for list="{{stats}}" as="k" hint-placeholder-count="4"><div style="padding: 22px; background: #0F0C18; border: 1px solid #221E2C; border-radius: 14px"><div style="color: #A9A3B8; font-size: 14px">{{k.label}}</div><div style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-size: 28px; margin-top: 10px">{{k.value}}</div><div style="color: #8A8499; font-size: 13px; margin-top: 6px">{{k.note}}</div></div></sc-for>
+</div>
+<h2 style="font-weight: 500; font-size: 17px; margin: 32px 0 14px">Requests by status</h2>
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 640px">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="6"><div style="display: grid; grid-template-columns: 150px 1fr 32px; gap: 12px; align-items: center; font-size: 14px"><span style="color: #C9C3D6">{{b.label}}</span><span style="height: 10px; background: #16131D; border-radius: 5px; overflow: hidden"><span style="{{b.style}}"></span></span><span style="text-align: end">{{b.n}}</span></div></sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{vSet}}" hint-placeholder-val="{{ false }}">
+<form class="dm-step-in" onSubmit="{{saveSettings}}" style="max-width: 560px; display: flex; flex-direction: column; gap: 18px">
+<h1 style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-weight: 400; font-size: 24px; margin: 0 0 4px">Settings</h1>
+<label style="display: flex; flex-direction: column; gap: 8px">New request emails go to<input type="email" value="{{set.email}}" onInput="{{set.setEmail}}" style="min-height: 44px; background: #0A0910; color: #F2F0F7; border: 1px solid #2E2A38; border-radius: 10px; padding: 0 12px"></label>
+<label style="display: flex; flex-direction: column; gap: 8px">WhatsApp number<input type="tel" value="{{set.wa}}" onInput="{{set.setWa}}" style="min-height: 44px; background: #0A0910; color: #F2F0F7; border: 1px solid #2E2A38; border-radius: 10px; padding: 0 12px"></label>
+<label style="display: flex; flex-direction: column; gap: 8px">Default deposit<select value="{{set.dep}}" onChange="{{set.setDep}}" style="min-height: 44px; background: #0A0910; color: #F2F0F7; border: 1px solid #2E2A38; border-radius: 10px; padding: 0 12px"><option value="0">No deposit</option><option value="30">30%</option><option value="50">50%</option><option value="100">Full payment</option></select></label>
+<label style="display: flex; align-items: center; gap: 12px; min-height: 44px; cursor: pointer"><input type="checkbox" checked="{{set.auto}}" onChange="{{set.toggleAuto}}" style="width: 20px; height: 20px; accent-color: #8B6CFF">Send customers WhatsApp updates when status changes</label>
+<div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap">
+<button type="submit" class="dm-btn dm-fill" style="min-height: 50px; padding: 0 28px; background: #F2F0F7; color: #000; border: 0; border-radius: 25px; font-weight: 500; cursor: pointer"><span class="dm-roll"><span data-t="Save settings">Save settings</span></span></button>
+<sc-if value="{{set.saved}}" hint-placeholder-val="{{ false }}"><span role="status" style="color: #C8B8FF">Saved</span></sc-if>
+</div>
+</form>
+</sc-if>
+
+</main>
+
+<sc-if value="{{toast}}" hint-placeholder-val="{{ false }}">
+<div role="status" class="dm-toast" style="position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 80; padding: 14px 20px; background: #F2F0F7; color: #000; border-radius: 26px; box-shadow: 0 20px 60px rgba(107,79,216,0.5); font-size: 15px; max-width: calc(100% - 32px); box-sizing: border-box">{{toast}}</div>
+</sc-if>
+</div>
+</script>
+<script src="assets/preact.min.umd.js"></script>
+<script src="assets/runtime.js"></script>
+<script>
+class Component extends DCLogic {
+constructor(p) {
+super(p);
+this.state = { view: 'req', filter: 'all', q: '', sel: 'DM-1042', price: '850', ready: '2026-12-10', dep: '50', toast: '', nav: false,
+setEmail: 'orders@darkmatter.qa', setWa: '+974 6008 5588', setDep: '50', setAuto: true, saved: false,
+rows: [
+{ id: 'DM-1042', name: 'Khalid Al-Mannai', contact: '+974 5555 0000 · prefers WhatsApp', what: 'Falcon statue, 25 cm', brief: 'Falcon on a wooden base for an office, painted like the photo. Resin, 25 cm, qty 1, needed by 15 Dec.', status: 'New', when: '12 min ago', files: [['falcon_statue_v2.stl', '48.2 MB'], ['reference_colours.jpg', '2.1 MB']], log: ['15 Oct 12:20 · Request received'] },
+{ id: 'DM-1041', name: 'Sara H.', contact: 'sara.h@example.com · prefers email', what: 'Car part replacement', brief: 'Replacement vent clip for a 2018 Land Cruiser. PETG, black, qty 4.', status: 'New', when: '2 h ago', files: [['vent_clip.step', '0.4 MB'], ['broken_clip.jpg', '1.6 MB']], log: ['15 Oct 10:31 · Request received'] },
+{ id: 'DM-1039', name: 'QF Events team', contact: 'events@example.org · prefers email', what: '40 trophies, logo', brief: 'Forty 18 cm trophies with an embossed logo for an awards night. Painted gold.', status: 'Quoted', when: 'Yesterday', files: [['trophy_logo.svg', '0.2 MB']], log: ['14 Oct 09:12 · Request received', '14 Oct 15:40 · Quote sent: QAR 9,600'] },
+{ id: 'DM-1037', name: 'Mohammed A.', contact: '+974 3300 1122 · prefers WhatsApp', what: 'Family figure from photo', brief: 'Figure of four family members from a photo, 20 cm, hand-painted.', status: 'Awaiting payment', when: 'Yesterday', files: [['family_photo.jpg', '3.8 MB']], log: ['14 Oct 08:02 · Request received', '14 Oct 11:15 · Quote sent: QAR 1,900'] },
+{ id: 'DM-1034', name: 'Noura K.', contact: '+974 6611 2233 · prefers WhatsApp', what: 'Cosplay helmet', brief: 'Wearable helmet from the attached STL, primed only.', status: 'Printing', when: '3 Oct', files: [['helmet_full.stl', '112 MB']], log: ['3 Oct · Request received', '3 Oct · Quote sent', '4 Oct · Deposit paid', '5 Oct · Printing started'] },
+{ id: 'DM-1031', name: 'Hamad S.', contact: '+974 5000 9988 · prefers WhatsApp', what: 'Stadium model, custom base', brief: 'Lusail Stadium model with an engraved base for a gift.', status: 'Painting', when: '1 Oct', files: [['base_text.txt', '1 KB']], log: ['1 Oct · Request received', '2 Oct · Deposit paid', '6 Oct · Printed'] },
+{ id: 'DM-1028', name: 'Layla R.', contact: 'layla@example.com · prefers email', what: 'Pet figure, 12 cm', brief: 'Cat figure from three photos, 12 cm, painted.', status: 'Ready', when: '28 Sep', files: [['cat_1.jpg', '2.2 MB'], ['cat_2.jpg', '2.0 MB']], log: ['28 Sep · Request received', '30 Sep · Paid in full', '10 Oct · Ready for pickup'] }
+] };
+}
+componentWillUnmount() { clearTimeout(this.tt); }
+flash(msg) { clearTimeout(this.tt); this.setState({ toast: msg }); this.tt = setTimeout(() => this.setState({ toast: '' }), 2800); }
+update(id, patch, logLine) { this.setState({ rows: this.state.rows.map((r) => r.id === id ? Object.assign({}, r, patch, { log: logLine ? r.log.concat([logLine]) : r.log }) : r) }); }
+renderVals() {
+const s = this.state;
+const pills = { 'New': 'background: #3B2F66; color: #E4DCFF', 'Quoted': 'background: #2A2A2A; color: #E6E6E6', 'Awaiting payment': 'background: #5A3D10; color: #FFE2B0', 'Printing': 'background: #123B5C; color: #CFE6FF', 'Painting': 'background: #123B5C; color: #CFE6FF', 'Ready': 'background: #F2F0F7; color: #000', 'Delivered': 'background: #1E3A2A; color: #C9F2D9' };
+const pill = (st) => 'display: inline-block; padding: 4px 12px; border-radius: 14px; font-size: 13px; white-space: nowrap; ' + pills[st];
+const group = { all: null, New: ['New'], Quoted: ['Quoted'], 'Awaiting payment': ['Awaiting payment'], 'In production': ['Printing', 'Painting'], Ready: ['Ready', 'Delivered'] };
+const q = s.q.trim().toLowerCase();
+const inGroup = (r, k) => !group[k] || group[k].indexOf(r.status) >= 0;
+const shown = s.rows.filter((r) => inGroup(r, s.filter) && (!q || (r.id + ' ' + r.name).toLowerCase().indexOf(q) >= 0));
+const tabs = Object.keys(group).map((k) => ({ label: k === 'all' ? 'All' : k, count: s.rows.filter((r) => inGroup(r, k)).length, sel: String(s.filter === k), pick: () => this.setState({ filter: k }),
+style: 'min-height: 40px; padding: 0 16px; border-radius: 20px; font-size: 14px; cursor: pointer; white-space: nowrap; ' + (s.filter === k ? 'background: #F2F0F7; color: #000; border: 1px solid #F2F0F7' : 'background: transparent; color: #F2F0F7; border: 1px solid #2E2A38') }));
+const rows = shown.map((r) => ({ id: r.id, name: r.name, what: r.what, status: r.status, when: r.when, pill: pill(r.status), sel: String(r.id === s.sel),
+pick: (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ sel: r.id, price: r.id === 'DM-1041' ? '120' : s.price }); },
+rowStyle: 'border-top: 1px solid #16131D; ' + (r.id === s.sel ? 'background: #1A1624; box-shadow: inset 3px 0 0 #8B6CFF' : '') }));
+const R = s.rows.find((r) => r.id === s.sel) || s.rows[0];
+const flow = ['Awaiting payment', 'Printing', 'Painting', 'Ready', 'Delivered'];
+const nextMap = { 'Quoted': ['Mark deposit received', 'Printing'], 'Awaiting payment': ['Mark deposit received', 'Printing'], 'Printing': ['Move to painting', 'Painting'], 'Painting': ['Mark ready for pickup', 'Ready'], 'Ready': ['Mark delivered', 'Delivered'] };
+const nx = nextMap[R.status];
+const sel = { id: R.id, name: R.name, contact: R.contact, brief: R.brief, status: R.status, pill: pill(R.status), log: R.log,
+files: R.files.map((f) => ({ name: f[0], label: f[1] + ' · Download', dl: () => this.flash('Downloading ' + f[0] + ' (demo)') })),
+canQuote: R.status === 'New', canAdvance: !!nx, nextLabel: nx ? nx[0] : '' };
+const priceN = Number(s.price) || 0, depN = Number(s.dep);
+const views = [['req', 'Print requests'], ['cust', 'Customers'], ['rep', 'Reports'], ['set', 'Settings']].map((v) => ({ label: v[1], cur: s.view === v[0] ? 'page' : 'false',
+badge: v[0] === 'req' ? (s.rows.filter((r) => r.status === 'New').length || '') : '',
+pick: () => this.setState({ view: v[0], nav: false }),
+style: 'display: flex; align-items: center; gap: 10px; width: 100%; min-height: 44px; padding: 0 12px; border-radius: 10px; border: 0; text-align: start; cursor: pointer; font-size: 15px; ' + (s.view === v[0] ? 'background: #1A1624; color: #F2F0F7' : 'background: transparent; color: #A9A3B8') }));
+const custMap = {};
+s.rows.forEach((r) => { if (!custMap[r.name]) custMap[r.name] = { name: r.name, contact: r.contact.split(' · ')[0], n: 0, latest: r.id, id: r.id }; custMap[r.name].n += 1; });
+const customers = Object.keys(custMap).map((k) => Object.assign({}, custMap[k], { open: () => this.setState({ view: 'req', filter: 'all', q: '', sel: custMap[k].id }) }));
+const counts = {}; s.rows.forEach((r) => { counts[r.status] = (counts[r.status] || 0) + 1; });
+const maxC = Math.max.apply(null, Object.keys(counts).map((k) => counts[k]));
+const bars = ['New', 'Quoted', 'Awaiting payment', 'Printing', 'Painting', 'Ready', 'Delivered'].map((k) => ({ label: k, n: counts[k] || 0, style: 'display: block; height: 100%; border-radius: 5px; background: #8B6CFF; width: ' + ((counts[k] || 0) / maxC * 100) + '%' }));
+const quoted = s.rows.filter((r) => r.status !== 'New').length;
+const stats = [{ label: 'Requests this month', value: s.rows.length, note: 'Sample data' }, { label: 'Waiting for a quote', value: counts['New'] || 0, note: 'Oldest: 2 h' }, { label: 'Quote to paid', value: Math.round((s.rows.filter((r) => flow.indexOf(r.status) > 0).length / Math.max(1, quoted)) * 100) + '%', note: 'Of quoted requests' }, { label: 'In production', value: (counts['Printing'] || 0) + (counts['Painting'] || 0), note: 'Printing or painting' }];
+const sv = (k) => (e) => this.setState({ [k]: e.target.value, saved: false });
+return {
+views, vReq: s.view === 'req', vCust: s.view === 'cust', vRep: s.view === 'rep', vSet: s.view === 'set',
+sideCls: s.nav ? 'open' : '', navAria: s.nav ? 'true' : 'false', toggleNav: () => this.setState({ nav: !s.nav }),
+tabs, rows, noRows: rows.length === 0, q: s.q, setQ: (e) => this.setState({ q: e.target.value }), clearFilters: () => this.setState({ q: '', filter: 'all' }),
+sel, price: s.price, ready: s.ready, dep: s.dep, setPrice: sv('price'), setReady: sv('ready'), setDep: sv('dep'),
+depText: depN ? 'Customer pays QAR ' + Math.round(priceN * depN / 100).toLocaleString('en-US') + ' now, QAR ' + Math.round(priceN * (100 - depN) / 100).toLocaleString('en-US') + ' on pickup.' : 'Customer pays the full amount on pickup.',
+sendQuote: () => { this.update(R.id, { status: 'Quoted' }, '15 Oct · Quote sent: QAR ' + priceN.toLocaleString('en-US') + ', ready ' + s.ready); this.flash('Quote sent to ' + R.name + ' on WhatsApp with a MyFatoorah payment link'); },
+advance: () => { this.update(R.id, { status: nx[1] }, '15 Oct · ' + nx[0]); this.flash(R.id + ' moved to ' + nx[1]); },
+customers, stats, bars,
+set: { email: s.setEmail, wa: s.setWa, dep: s.setDep, auto: s.setAuto, saved: s.saved, setEmail: sv('setEmail'), setWa: sv('setWa'), setDep: sv('setDep'), toggleAuto: () => this.setState({ setAuto: !s.setAuto, saved: false }) },
+saveSettings: (e) => { e.preventDefault(); this.setState({ saved: true }); this.flash('Settings saved'); },
+toast: s.toast
+};
+}
+}
+mountPage(Component);
+</script>
+</body>
+</html>

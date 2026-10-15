@@ -29,6 +29,8 @@ input,textarea,select,button{font:inherit}
 .dm-ico:hover{background-color:#16131D;box-shadow:0 0 22px rgba(139,108,255,.45);color:#C8B8FF}
 .dm-nav a{background:linear-gradient(#C8B8FF,#C8B8FF) 0 100%/0 1px no-repeat;transition:background-size .35s cubic-bezier(.2,.8,.2,1),color .25s ease}
 .dm-nav a:hover{background-size:100% 1px}
+.dm-dash{transition:border-color .25s ease,color .25s ease,box-shadow .25s ease}
+.dm-dash:hover{border-color:#8B6CFF;color:#F2F0F7;box-shadow:0 0 20px rgba(139,108,255,.35)}
 .dm-mob{display:none !important}
 .dm-menu{animation:dmMenuFade .35s ease both}
 @keyframes dmMenuFade{from{opacity:0}to{opacity:1}}
@@ -67,7 +69,7 @@ input,textarea,select,button{font:inherit}
 </head>
 <body>
 <div id="app"></div>
-<template id="dm-template">
+<script type="text/x-template" id="dm-template">
 <div dir="{{dir}}" lang="{{lang}}" style="background: #000000; color: #F2F0F7; font-family: 'IBM Plex Sans Arabic', sans-serif; min-height: 100%; overflow-x: clip">
 <header style="position: relative; z-index: 20">
 <div style="max-width: 1280px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
@@ -207,12 +209,14 @@ input,textarea,select,button{font:inherit}
 </div>
 <a href="https://wa.me/97460085588" target="_blank" rel="noopener" class="dm-btn dm-line" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; border: 1px solid #F2F0F7; border-radius: 26px; text-decoration: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg><span class="dm-roll"><span data-t="WhatsApp +974 6008 5588">WhatsApp +974 6008 5588</span></span></a>
 </div>
-<div style="max-width: 1280px; margin: 0 auto; padding: 16px 24px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: #8A8499; font-size: 13px">
-<span>© 2026 DarkMatter Collectibles</span><span dir="ltr">Visa · Mastercard · Amex · NAPS · STC Pay · Apple Pay</span>
+<div style="max-width: 1280px; margin: 0 auto; padding: 16px 24px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; color: #8A8499; font-size: 13px">
+<span>© 2026 DarkMatter Collectibles</span>
+<a href="dashboard.html" class="dm-dash" style="display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 14px; border: 1px solid #2E2A38; border-radius: 18px; color: #C9C3D6; text-decoration: none; font-size: 13px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>{{t.dash}}</a>
+<span dir="ltr">Visa · Mastercard · Amex · NAPS · STC Pay · Apple Pay</span>
 </div>
 </footer>
 </div>
-</template>
+</script>
 <script src="assets/preact.min.umd.js"></script>
 <script src="assets/runtime.js"></script>
 <script>
@@ -236,7 +240,7 @@ nav, mnav, menuOpen: !!s.menu, menuAria: s.menu ? 'true' : 'false',
 openMenu: () => this.setState({ menu: true }), closeMenu: () => this.setState({ menu: false }),
 toggleLang: () => this.setState({ ar: !ar }), langLabel: ar ? 'English' : 'العربية',
 dir: ar ? 'rtl' : 'ltr', lang: ar ? 'ar' : 'en', cartCount: cartCount || 0, hasCart: (cartCount || 0) > 0,
-t: { loop: ar ? 'تابعونا' : 'Get in the loop' }
+t: { loop: ar ? 'تابعونا' : 'Get in the loop', dash: ar ? 'لوحة الفريق' : 'Team dashboard' }
 };
 }
 shade(hex, k) {
@@ -298,7 +302,7 @@ style: 'width: 100%; display: flex; flex-direction: column; align-items: flex-st
 bar: 'display: block; height: 100%; background: #8B6CFF; box-shadow: 0 0 10px rgba(139,108,255,0.8); width: ' + (s.stage === i ? '100%' : '0%') + (s.stage === i ? '' : '; transition: none') }));
 const set = (k) => (e) => this.setState({ [k]: e.target.value, err: '' });
 return Object.assign(this.hdr('about', 0), {
-t: Object.assign({ loop: ar ? 'تابعونا' : 'Get in the loop' }, T),
+t: Object.assign({ loop: ar ? 'تابعونا' : 'Get in the loop', dash: ar ? 'لوحة الفريق' : 'Team dashboard' }, T),
 stages, faces: this.faces(s.stage), mechCaption: defs[s.stage][2], mechLabel: 'Figure shown as: ' + defs[s.stage][2],
 f: { name: s.name, phone: s.phone, email: s.email, msg: s.msg, err: s.err, setName: set('name'), setPhone: set('phone'), setEmail: set('email'), setMsg: set('msg') },
 sent: s.sent, notSent: !s.sent,
