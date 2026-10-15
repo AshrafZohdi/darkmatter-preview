@@ -88,20 +88,18 @@ input,textarea,select,button{font:inherit}
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
 <div style="flex: 999 1 480px; min-width: 0; overflow-x: auto; background: #000; border: 1px solid #16131D; border-radius: 12px">
-<dm-table style="width: 100%; border-collapse: collapse; font-size: 15px; min-width: 560px">
-<dm-thead><dm-tr style="text-align: start; color: #A9A3B8; font-size: 13px"><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Request</dm-th><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Customer</dm-th><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">What</dm-th><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Status</dm-th><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Received</dm-th></dm-tr></dm-thead>
-<dm-tbody>
+<div role="table" aria-label="Print requests" style="min-width: 640px; font-size: 15px">
+<div role="row" style="display: grid; grid-template-columns: 100px minmax(130px, 1.1fr) minmax(150px, 1.4fr) 150px 100px; color: #A9A3B8; font-size: 13px"><span role="columnheader" style="padding: 14px 16px">Request</span><span role="columnheader" style="padding: 14px 16px">Customer</span><span role="columnheader" style="padding: 14px 16px">What</span><span role="columnheader" style="padding: 14px 16px">Status</span><span role="columnheader" style="padding: 14px 16px">Received</span></div>
 <sc-for list="{{rows}}" as="r" hint-placeholder-count="7">
-<dm-tr class="dm-row" onClick="{{r.pick}}" aria-selected="{{r.sel}}" style="{{r.rowStyle}}">
-<dm-td style="padding: 14px 16px; font-weight: 500"><button type="button" onClick="{{r.pick}}" style="background: none; border: 0; color: inherit; padding: 0; cursor: pointer; font-weight: 500">{{r.id}}</button></dm-td>
-<dm-td style="padding: 14px 16px">{{r.name}}</dm-td>
-<dm-td style="padding: 14px 16px; color: #C9C3D6">{{r.what}}</dm-td>
-<dm-td style="padding: 14px 16px"><span style="{{r.pill}}">{{r.status}}</span></dm-td>
-<dm-td style="padding: 14px 16px; color: #A9A3B8">{{r.when}}</dm-td>
-</dm-tr>
+<div role="row" class="dm-row" onClick="{{r.pick}}" style="{{r.rowStyle}}">
+<span role="cell" style="padding: 14px 16px"><button type="button" onClick="{{r.pick}}" aria-pressed="{{r.sel}}" style="background: none; border: 0; color: inherit; padding: 0; cursor: pointer; font-weight: 500; min-height: 24px">{{r.id}}</button></span>
+<span role="cell" style="padding: 14px 16px">{{r.name}}</span>
+<span role="cell" style="padding: 14px 16px; color: #C9C3D6">{{r.what}}</span>
+<span role="cell" style="padding: 14px 16px"><span style="{{r.pill}}">{{r.status}}</span></span>
+<span role="cell" style="padding: 14px 16px; color: #A9A3B8">{{r.when}}</span>
+</div>
 </sc-for>
-</dm-tbody>
-</dm-table>
+</div>
 <sc-if value="{{noRows}}" hint-placeholder-val="{{ false }}"><div style="padding: 32px 16px; color: #A9A3B8">No requests match. <button type="button" onClick="{{clearFilters}}" style="background: none; border: 0; color: #C8B8FF; text-decoration: underline; cursor: pointer; min-height: 44px">Clear filters</button></div></sc-if>
 </div>
 
@@ -143,10 +141,10 @@ input,textarea,select,button{font:inherit}
 <div class="dm-step-in">
 <h1 style="font-family: Michroma, IBM Plex Sans Arabic, sans-serif; font-weight: 400; font-size: 24px; margin: 0 0 22px">Customers</h1>
 <div style="overflow-x: auto; background: #000; border: 1px solid #16131D; border-radius: 12px">
-<dm-table style="width: 100%; border-collapse: collapse; font-size: 15px; min-width: 520px">
-<dm-thead><dm-tr style="color: #A9A3B8; font-size: 13px"><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Customer</dm-th><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Contact</dm-th><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Requests</dm-th><dm-th style="padding: 14px 16px; font-weight: 500; text-align: start">Latest</dm-th></dm-tr></dm-thead>
-<dm-tbody><sc-for list="{{customers}}" as="c" hint-placeholder-count="6"><dm-tr class="dm-row" onClick="{{c.open}}" style="border-top: 1px solid #16131D; cursor: pointer"><dm-td style="padding: 14px 16px">{{c.name}}</dm-td><dm-td style="padding: 14px 16px; color: #C9C3D6" dir="ltr">{{c.contact}}</dm-td><dm-td style="padding: 14px 16px">{{c.n}}</dm-td><dm-td style="padding: 14px 16px; color: #A9A3B8">{{c.latest}}</dm-td></dm-tr></sc-for></dm-tbody>
-</dm-table>
+<div role="table" aria-label="Customers" style="min-width: 540px; font-size: 15px">
+<div role="row" style="display: grid; grid-template-columns: minmax(150px, 1.2fr) minmax(160px, 1.2fr) 100px 110px; color: #A9A3B8; font-size: 13px"><span role="columnheader" style="padding: 14px 16px">Customer</span><span role="columnheader" style="padding: 14px 16px">Contact</span><span role="columnheader" style="padding: 14px 16px">Requests</span><span role="columnheader" style="padding: 14px 16px">Latest</span></div>
+<sc-for list="{{customers}}" as="c" hint-placeholder-count="6"><div role="row" class="dm-row" onClick="{{c.open}}" style="display: grid; grid-template-columns: minmax(150px, 1.2fr) minmax(160px, 1.2fr) 100px 110px; align-items: center; border-top: 1px solid #16131D; cursor: pointer"><span role="cell" style="padding: 14px 16px"><button type="button" onClick="{{c.open}}" style="background: none; border: 0; color: inherit; padding: 0; cursor: pointer; text-align: start">{{c.name}}</button></span><span role="cell" style="padding: 14px 16px; color: #C9C3D6" dir="ltr">{{c.contact}}</span><span role="cell" style="padding: 14px 16px">{{c.n}}</span><span role="cell" style="padding: 14px 16px; color: #A9A3B8">{{c.latest}}</span></div></sc-for>
+</div>
 </div>
 </div>
 </sc-if>
@@ -218,7 +216,7 @@ const tabs = Object.keys(group).map((k) => ({ label: k === 'all' ? 'All' : k, co
 style: 'min-height: 40px; padding: 0 16px; border-radius: 20px; font-size: 14px; cursor: pointer; white-space: nowrap; ' + (s.filter === k ? 'background: #F2F0F7; color: #000; border: 1px solid #F2F0F7' : 'background: transparent; color: #F2F0F7; border: 1px solid #2E2A38') }));
 const rows = shown.map((r) => ({ id: r.id, name: r.name, what: r.what, status: r.status, when: r.when, pill: pill(r.status), sel: String(r.id === s.sel),
 pick: (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ sel: r.id, price: r.id === 'DM-1041' ? '120' : s.price }); },
-rowStyle: 'border-top: 1px solid #16131D; ' + (r.id === s.sel ? 'background: #1A1624; box-shadow: inset 3px 0 0 #8B6CFF' : '') }));
+rowStyle: 'display: grid; grid-template-columns: 100px minmax(130px, 1.1fr) minmax(150px, 1.4fr) 150px 100px; align-items: center; border-top: 1px solid #16131D; ' + (r.id === s.sel ? 'background: #1A1624; box-shadow: inset 3px 0 0 #8B6CFF' : '') }));
 const R = s.rows.find((r) => r.id === s.sel) || s.rows[0];
 const flow = ['Awaiting payment', 'Printing', 'Painting', 'Ready', 'Delivered'];
 const nextMap = { 'Quoted': ['Mark deposit received', 'Printing'], 'Awaiting payment': ['Mark deposit received', 'Printing'], 'Printing': ['Move to painting', 'Painting'], 'Painting': ['Mark ready for pickup', 'Ready'], 'Ready': ['Mark delivered', 'Delivered'] };
